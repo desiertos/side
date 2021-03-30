@@ -11,6 +11,11 @@ https://www.cislm.org/2018-report-the-expanding-news-desert/
 https://www.cislm.org/unc-media-hub-examines-n-c-news-deserts/
 https://www.cislm.org/resources/report/the-rise-of-a-new-media-baron/
 https://www.cislm.org/wp-content/uploads/2016/10/Abernathy_full.pdf
+https://www.poynter.org/locally/2020/unc-news-deserts-report-2020/
+https://en.wikipedia.org/wiki/News_desert
+https://www.usnewsdeserts.com/
+https://www.usnewsdeserts.com/states-main/
+https://www.usnewsdeserts.com/states/colorado/#1591292034492-8808d6e0-1270 (nice that they have a "who owns your newspaper?" section)
 
 ### Brazil
 
