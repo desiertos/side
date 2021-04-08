@@ -19,6 +19,13 @@ https://docs.mapbox.com/mapbox-gl-js/example/fill-pattern/
 Bem o que eu estava procurando, Mapbox e Greensock, no Learn with Jason:
 https://www.youtube.com/watch?v=BY59_8jMrbg&list=PLz8Iz-Fnk_eTpvd49Sa77NiF8Uqq5Iykx&index=111
 
+## Ideias
+
+Animação
+http://assets.eli.wtf/talks/animation-talk-webu-2018/#
+
+ANimation to provide a "mental map of what's out of view"
+http://assets.eli.wtf/talks/animation-talk-webu-2018/#/49
 
 ## Inspiration
 
