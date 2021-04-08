@@ -6,6 +6,11 @@ https://www.fopea.org/
 
 https://www.notion.so/Propuesta-de-visualizaci-n-de-datos-desiertos-de-noticias-en-Argentina-001e7890915941c383da597579698c40
 
+## Análise (R)
+
+Shapefiles: https://www.ign.gob.ar/NuestrasActividades/InformacionGeoespacial/CapasSIG
+Opção: Polígono, Provincia
+
 ## Inspiration
 
 ### US
