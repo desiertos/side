@@ -2,6 +2,10 @@
 
 https://www.fopea.org/
 
+## Proposta
+
+https://www.notion.so/Propuesta-de-visualizaci-n-de-datos-desiertos-de-noticias-en-Argentina-001e7890915941c383da597579698c40
+
 ## Inspiration
 
 ### US
