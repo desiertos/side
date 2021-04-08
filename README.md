@@ -16,6 +16,10 @@ Opção: Polígono, Provincia
 Using an imagem as a fill-pattern to a polygon.
 https://docs.mapbox.com/mapbox-gl-js/example/fill-pattern/
 
+Bem o que eu estava procurando, Mapbox e Greensock, no Learn with Jason:
+https://www.youtube.com/watch?v=BY59_8jMrbg&list=PLz8Iz-Fnk_eTpvd49Sa77NiF8Uqq5Iykx&index=111
+
+
 ## Inspiration
 
 ### US
