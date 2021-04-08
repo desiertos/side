@@ -1,4 +1,4 @@
-# Side
+# Um milhão (talvez um pouco menos) de coisas aleatórias relacionadas ao desenvolvimento do projeto
 
 https://www.fopea.org/
 
