@@ -11,6 +11,11 @@ https://www.notion.so/Propuesta-de-visualizaci-n-de-datos-desiertos-de-noticias-
 Shapefiles: https://www.ign.gob.ar/NuestrasActividades/InformacionGeoespacial/CapasSIG
 Opção: Polígono, Provincia
 
+## Mapbox
+
+Using an imagem as a fill-pattern to a polygon.
+https://docs.mapbox.com/mapbox-gl-js/example/fill-pattern/
+
 ## Inspiration
 
 ### US
