@@ -2,6 +2,12 @@
 
 https://www.fopea.org/
 
+## to-do
+
+[ ] video Mapbox x Greensock
+[ ] mascara
+
+
 ## Proposta
 
 https://www.notion.so/Propuesta-de-visualizaci-n-de-datos-desiertos-de-noticias-en-Argentina-001e7890915941c383da597579698c40
@@ -18,6 +24,13 @@ https://docs.mapbox.com/mapbox-gl-js/example/fill-pattern/
 
 Bem o que eu estava procurando, Mapbox e Greensock, no Learn with Jason:
 https://www.youtube.com/watch?v=BY59_8jMrbg&list=PLz8Iz-Fnk_eTpvd49Sa77NiF8Uqq5Iykx&index=111
+
+Otimizar GeoJson
+https://docs.mapbox.com/help/troubleshooting/working-with-large-geojson-data/
+geojson-pick to remove unused properties 
+geojson-precision to limit the number of decimal places for coordinates
+
+https://docs.mapbox.com/help/troubleshooting/mapbox-gl-js-performance/
 
 ## Ideias
 
