@@ -71,3 +71,9 @@ https://www.atlas.jor.br/desertos-de-noticia/
 
 https://www.franceinter.fr/emissions/l-instant-m/l-instant-m-05-decembre-2018
 https://www.lagazettedescommunes.com/681861/la-crise-risque-de-reduire-le-pluralisme-de-la-presse-locale-cyrille-frank-directeur-de-lesj-pro-paris/
+
+
+# Referência Mapbox
+
+map.getStyle().sources
+map.getStyle().layers
