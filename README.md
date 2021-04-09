@@ -12,7 +12,7 @@ https://www.fopea.org/
 
 https://www.notion.so/Propuesta-de-visualizaci-n-de-datos-desiertos-de-noticias-en-Argentina-001e7890915941c383da597579698c40
 
-## Análise (R)
+## Mapas / Shapefiles
 
 Shapefiles: https://www.ign.gob.ar/NuestrasActividades/InformacionGeoespacial/CapasSIG
 Opção: Polígono, Provincia
@@ -31,6 +31,11 @@ geojson-pick to remove unused properties
 geojson-precision to limit the number of decimal places for coordinates
 
 https://docs.mapbox.com/help/troubleshooting/mapbox-gl-js-performance/
+
+## CLI Cartography
+
+https://mapshaper.org/
+https://medium.com/@mbostock/command-line-cartography-part-1-897aa8f8ca2c
 
 ## Ideias
 
