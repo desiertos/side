@@ -7,6 +7,9 @@ https://www.fopea.org/
 [ ] video Mapbox x Greensock
 [ ] mascara
 
+Pode ser útil para o "dashboard"
+https://docs.mapbox.com/mapbox-gl-js/example/offset-vanishing-point-with-padding/
+
 
 ## Proposta
 
@@ -77,3 +80,5 @@ https://www.lagazettedescommunes.com/681861/la-crise-risque-de-reduire-le-plural
 
 map.getStyle().sources
 map.getStyle().layers
+map.getCenter()
+map.getZoom()
