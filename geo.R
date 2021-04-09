@@ -33,11 +33,13 @@ world_crs <- st_transform(world, st_crs(world))
 
 arg_mask <- sf::st_difference(world_crs, arg_cont)
 
+arg_mask_simple <- sf::st_simplify(arg_mask, dTolerance = .1)
+
 ggplot(arg_mask) + 
   geom_sf()
 
 arg_geojson <- geojsonsf::sf_geojson(arg_prov, digits = 6)
 write_file(arg_geojson, "./geo_data/arg.geojson")
 
-arg_mask_geojson <- geojsonsf::sf_geojson(arg_mask, digits = 6)
+arg_mask_geojson <- geojsonsf::sf_geojson(arg_mask_simple, digits = 6)
 write_file(arg_mask_geojson, "./geo_data/arg_mask.geojson")
