@@ -37,6 +37,8 @@ geojson-precision to limit the number of decimal places for coordinates
 
 https://docs.mapbox.com/help/troubleshooting/mapbox-gl-js-performance/
 
+https://blog.mapbox.com/how-the-pudding-team-uses-mapbox-4b5b8577001f
+
 ### 3D
 
 https://blog.mapbox.com/3d-mapping-global-population-density-how-i-built-it-141785c91107
@@ -187,3 +189,5 @@ A Fernanda perguntando no grupo de plantas sobre os cactos da Argentina.
 O artigo do Matt sobre 3D.
 
 It is really important to have in mind the structure of the features array, and of the man objects with which we deal.
+
+Frio na barriga quando vi o protótipo da Fernanda.
