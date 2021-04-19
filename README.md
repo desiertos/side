@@ -12,6 +12,7 @@ https://docs.mapbox.com/mapbox-gl-js/example/offset-vanishing-point-with-padding
 
 Ler:
 https://web.dev/variable-fonts/
+https://chartability.fizz.studio/
 
 
 
@@ -25,7 +26,6 @@ Shapefiles: https://www.ign.gob.ar/NuestrasActividades/InformacionGeoespacial/Ca
 Opção: Polígono, Provincia
 
 ## Mapbox
-
 
 Bem o que eu estava procurando, Mapbox e Greensock, no Learn with Jason:
 https://www.youtube.com/watch?v=BY59_8jMrbg&list=PLz8Iz-Fnk_eTpvd49Sa77NiF8Uqq5Iykx&index=111
@@ -97,6 +97,9 @@ map.getZoom()
 https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/
 https://docs.mapbox.com/mapbox-gl-js/api/map/#map
 https://docs.mapbox.com/studio-manual/guides/
+
+Here I did a small exploration tool with tooltips
+https://github.com/epicenter-usa/side/blob/master/mapbox_experiments/test-manhattan.html
 
 #### Patterns
 
@@ -177,6 +180,12 @@ for (i in 1:4) {
   print(paste("Writing image ", i, "... com o nome ", tipos[i]))
 }
 ```
+
+### Shapefiles treatment
+
+Read shapefiles, simplified, exported to geojson with a 6-digit precision, but the file was still too large.
+
+Then uploaded it to mapshaper, simplified it there (12%) and exported to geojson.
 
 # Guidelines
 
