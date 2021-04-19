@@ -3,9 +3,11 @@ library(sf)
 library(geojsonsf)
 
 arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
+arg_dept <- read_sf(dsn = "./geo_data/departamento", layer = "departamento")
 arg <- read_sf(dsn = "./geo_data/pais", layer = "pais")
 
 arg_prov <- sf::st_simplify(arg_prov)
+arg_dept <- sf::st_simplify(arg_dept)
 arg <- sf::st_simplify(arg)
 
 bbox_arg_continental <- data.frame(
@@ -43,3 +45,6 @@ write_file(arg_geojson, "./geo_data/arg.geojson")
 
 arg_mask_geojson <- geojsonsf::sf_geojson(arg_mask_simple, digits = 6)
 write_file(arg_mask_geojson, "./geo_data/arg_mask.geojson")
+
+arg_dept_geojson <- geojsonsf::sf_geojson(arg_dept, digits = 6)
+write_file(arg_dept_geojson, "./geo_data/arg_dept.geojson")
