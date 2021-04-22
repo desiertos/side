@@ -57,6 +57,9 @@ http://assets.eli.wtf/talks/animation-talk-webu-2018/#
 ANimation to provide a "mental map of what's out of view"
 http://assets.eli.wtf/talks/animation-talk-webu-2018/#/49
 
+Comparar vegetação real x vegetação de notícias
+https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-compare/
+
 ## Inspiration
 
 ### US
