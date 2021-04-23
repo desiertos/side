@@ -25,8 +25,13 @@ dados_consolidados <- datos %>% bind_rows()
 
 dados_sumarizados <- dados_consolidados %>%
   group_by(provincia) %>%
-  mutate(media_provincia = ifelse(row_number() == 1, mean(`Relación Población residente/medios`, na.rm = TRUE), NA)) %>%
+  mutate(media_provincia = mean(`Relación Población residente/medios`, na.rm = TRUE)) %>%
+  # mutate(media_provincia = ifelse(row_number() == 1, mean(`Relación Población residente/medios`, na.rm = TRUE), NA)) %>%
   ungroup()
+
+dados_sumarizados$provincia %>% unique()
+
+write.csv(dados_sumarizados, file = "dados_deptos", fileEncoding = "UTF-8")
 
 ggplot(dados_sumarizados, aes(y = provincia, x = `Relación Población residente/medios`)) +
   geom_tile(aes(x = media_provincia), width = 20) +
