@@ -100,6 +100,7 @@ map.getZoom()
 https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/
 https://docs.mapbox.com/mapbox-gl-js/api/map/#map
 https://docs.mapbox.com/studio-manual/guides/
+https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/
 
 Here I did a small exploration tool with tooltips
 https://github.com/epicenter-usa/side/blob/master/mapbox_experiments/test-manhattan.html
