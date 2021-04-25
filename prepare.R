@@ -31,7 +31,9 @@ for (prov in names_provincias) {
   
 }
 
-datos_cidades_cons <- datos_cidades %>% bind_rows()
+datos_cidades_cons <- datos_cidades %>% 
+  bind_rows() %>%
+  mutate(cidade = str_to_title(cidade))
 
 
 
@@ -71,6 +73,24 @@ provincias <- provincias_raw %>%
   left_join(stats_provincias) %>%
   left_join(categorias_medias)
 
+
+# lista locais ------------------------------------------------------------
+
+lista_locais <- bind_rows(
+  
+  datos_cidades_cons %>% 
+    select(localidade = cidade) %>%
+    mutate(tipo = "Departamento"),
+  
+  provincias %>%
+    select(localidade = provincia) %>%
+    mutate(tipo = "Provincia")
+) %>%
+  mutate(
+    text = paste0(localidade, " (", tipo, ")")
+  ) %>%
+  arrange(text)
+
 # output object -----------------------------------------------------------
 
 output <- list(
@@ -79,7 +99,8 @@ output <- list(
   "stats" = list(
     "provincias" = stats_provincias,
     "nacional"   = stats_nacionais
-  )
+  ),
+  "lista_locais" = lista_locais
 )
 
 jsonlite::write_json(output, "output.json")
