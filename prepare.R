@@ -34,6 +34,7 @@ for (prov in names_provincias) {
 datos_cidades_cons <- datos_cidades %>% bind_rows()
 
 
+
 # stats provincias -------------------------------------------------------
 
 stats_provincias <- datos_cidades_cons %>%
@@ -55,10 +56,26 @@ stats_nacionais <- datos_cidades_cons %>%
     'max' = ~max(., na.rm = T)))
 
 
+# provincias --------------------------------------------------------------
+
+file_provincias <- "./data/provincias.xlsx"
+
+provincias_raw <- readxl::read_excel(file_provincias)
+
+categorias_medias <- datos_cidades_cons %>%
+  group_by(provincia) %>%
+  summarise(cat_media = mean(as.integer(categoria)))
+
+provincias <- provincias_raw %>%
+  rename(provincia = Provincia) %>%
+  left_join(stats_provincias) %>%
+  left_join(categorias_medias)
+
 # output object -----------------------------------------------------------
 
 output <- list(
   "cidades" = datos_cidades_cons,
+  "provincias" = provincias,
   "stats" = list(
     "provincias" = stats_provincias,
     "nacional"   = stats_nacionais
