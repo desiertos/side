@@ -2,7 +2,24 @@
 
 https://www.fopea.org/
 
-## to-do
+Figma: https://www.figma.com/file/9tjXVWYgSJLKOECbWsW1r0/Desiertos-Informativos-de-la-Argentina?node-id=101%3A985
+
+Notion: 
+
+https://www.notion.so/Roteiro-para-introdu-o-explicativa-e3522d603f164ae68279ab80f9294b3b
+
+https://www.notion.so/Resumen-de-informaciones-en-el-dashboard-81701429043d4f7fb288ed1bd664a2af
+
+## to-do protótipo
+
+[x] gerar lista de locais
+[ ] usar style de satélite
+[ ] tela de busca está confusa
+[ ] nomes locais planilhas x shapefiles
+[ ] mensagem de erro para quando valor da busca é inválido
+[ ] tirar valores de autocompletar da busca?
+
+## to-do conceitual
 
 [ ] video Mapbox x Greensock
 [ ] mascara
@@ -14,6 +31,9 @@ Ler:
 https://web.dev/variable-fonts/
 https://chartability.fizz.studio/
 
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/search
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist
+
 
 
 ## Proposta
@@ -24,6 +44,8 @@ https://www.notion.so/Propuesta-de-visualizaci-n-de-datos-desiertos-de-noticias-
 
 Shapefiles: https://www.ign.gob.ar/NuestrasActividades/InformacionGeoespacial/CapasSIG
 Opção: Polígono, Provincia
+
+https://datos.gob.ar/dataset/ign-unidades-territoriales/archivo/ign_01.02.02
 
 ## Mapbox
 
@@ -162,6 +184,11 @@ Move layers
 
 // puts "provinces" behind "road-label"
 app.map_obj.moveLayer("provinces", "road-label")
+```
+
+```js
+// highlights provincia border
+app.map.province.toggle_highlight_border_provincia('San Luis');
 ```
 
 ## R
