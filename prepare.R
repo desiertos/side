@@ -81,12 +81,13 @@ lista_locais <- bind_rows(
   
   datos_cidades_cons %>%
     filter(provincia %in% c("Salta", "San Luis")) %>%
-    select(local) %>%
-    mutate(tipo = "cidade"),
+    select(local, provincia) %>%
+    mutate(tipo = ifelse(local == "Capital", provincia, "cidade")),
   
   provincias %>%
     select(local) %>%
-    mutate(tipo = "provincia")
+    mutate(tipo = "provincia",
+           provincia = local)
 ) %>%
   mutate(
     text = paste0(local, " (", tipo, ")")
