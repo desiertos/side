@@ -82,7 +82,7 @@ lista_locais <- bind_rows(
   datos_cidades_cons %>%
     filter(provincia %in% c("Salta", "San Luis")) %>%
     select(local, provincia) %>%
-    mutate(tipo = ifelse(local == "Capital", provincia, "cidade")),
+    mutate(tipo = "cidade"),
   
   provincias %>%
     select(local) %>%
@@ -90,14 +90,24 @@ lista_locais <- bind_rows(
            provincia = local)
 ) %>%
   mutate(
-    text = paste0(local, " (", tipo, ")")
+    text = paste0(local, " (", ifelse(local == "Capital", provincia, tipo), ")")
   ) %>%
   arrange(text)
 
 # output object -----------------------------------------------------------
+bboxes <- readRDS('bboxes.rds')
+
+datos_cidades_export <- datos_cidades_cons %>%
+  filter(provincia %in% c('San Luis', 'Salta')) %>%
+  mutate(name_lower = str_to_lower(local))%>%
+  left_join(
+    bboxes %>% 
+      mutate(name_lower = str_to_lower(nam))
+    )
+  
 
 output <- list(
-  "cidade" = datos_cidades_cons,
+  "cidade" = datos_cidades_export,
   "provincia" = provincias,
   "stats" = list(
     "provincias" = stats_provincias,
@@ -107,3 +117,5 @@ output <- list(
 )
 
 jsonlite::write_json(output, "output.json")
+
+
