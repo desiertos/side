@@ -14,7 +14,7 @@ file_cidades <- "./data/cidades.xlsx"
 
 names_provincias <- readxl::excel_sheets(file_cidades)
 
-colunas <- c("cidade", "pob", "cant_medios", "cant_periodistas", "pobXmedios", "pobXperiodistas", "categoria", "provincia")
+colunas <- c("local", "pob", "cant_medios", "cant_periodistas", "pobXmedios", "pobXperiodistas", "categoria", "provincia")
 
 datos_cidades <- list()
 
@@ -33,7 +33,7 @@ for (prov in names_provincias) {
 
 datos_cidades_cons <- datos_cidades %>% 
   bind_rows() %>%
-  mutate(cidade = str_to_title(cidade))
+  mutate(local = str_to_title(local))
 
 
 
@@ -71,31 +71,33 @@ categorias_medias <- datos_cidades_cons %>%
 provincias <- provincias_raw %>%
   rename(provincia = Provincia) %>%
   left_join(stats_provincias) %>%
-  left_join(categorias_medias)
+  left_join(categorias_medias) %>%
+  rename(local = provincia)
 
 
 # lista locais ------------------------------------------------------------
 
 lista_locais <- bind_rows(
   
-  datos_cidades_cons %>% 
-    select(localidade = cidade) %>%
-    mutate(tipo = "Departamento"),
+  datos_cidades_cons %>%
+    filter(provincia %in% c("Salta", "San Luis")) %>%
+    select(local) %>%
+    mutate(tipo = "cidade"),
   
   provincias %>%
-    select(localidade = provincia) %>%
-    mutate(tipo = "Provincia")
+    select(local) %>%
+    mutate(tipo = "provincia")
 ) %>%
   mutate(
-    text = paste0(localidade, " (", tipo, ")")
+    text = paste0(local, " (", tipo, ")")
   ) %>%
   arrange(text)
 
 # output object -----------------------------------------------------------
 
 output <- list(
-  "cidades" = datos_cidades_cons,
-  "provincias" = provincias,
+  "cidade" = datos_cidades_cons,
+  "provincia" = provincias,
   "stats" = list(
     "provincias" = stats_provincias,
     "nacional"   = stats_nacionais
