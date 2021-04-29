@@ -47,6 +47,9 @@ Opção: Polígono, Provincia
 
 https://datos.gob.ar/dataset/ign-unidades-territoriales/archivo/ign_01.02.02
 
+(Priscilla, RSpatial_ES)
+Las unidades territoriales pueden ser descargadas desde varios portales oficiales como IGN, datos.gob.ar o el iel INDEC (instituto nacional de estadística y censos de Argentina).  El INDEC tiene una pagina todavia desponible para descargar poligonos de las unidades territoriales que se usaron en el censo 2010  y usan su propia definicion de atributos. SE puede reconstruiresa relacion provincia departamento que buscas  a partir del shp de departamentos  https://sitioanterior.indec.gob.ar/codgeo.asp  . Tambien podes encontrar listada esa relacion de codigos de indec aqui   https://redatam.indec.gob.ar/redarg/CENSOS/CPV2010A/Docs/codigos_provincias.pdf
+
 ## Mapbox
 
 Bem o que eu estava procurando, Mapbox e Greensock, no Learn with Jason:
