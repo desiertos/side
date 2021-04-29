@@ -77,3 +77,12 @@ arg_dept_com_categorias <- arg_dept %>%
 
 arg_dept_geojson <- geojsonsf::sf_geojson(arg_dept_com_categorias, digits = 6)
 write_file(arg_dept_geojson, "./geo_data/arg_dept.geojson")
+
+
+intersecao <- sf::st_intersects(arg_dept, arg_prov)
+
+intersecao[[4]]
+
+ggplot() +
+  geom_sf(data = arg_dept %>% filter(gid == 4), aes(geometry=geometry), fill = 'lightblue', alpha = .3, color = "transparent") +
+  geom_sf(data = arg_prov %>% filter(gid %in% c(1,19)), aes(geometry=geometry), color = 'firebrick', fill = 'transparent')
