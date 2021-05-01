@@ -81,8 +81,26 @@ write_file(arg_dept_geojson, "./geo_data/arg_dept.geojson")
 
 intersecao <- sf::st_intersects(arg_dept, arg_prov)
 
+drento <- sf::st_within(arg_dept, arg_prov)
+
 intersecao[[4]]
 
 ggplot() +
   geom_sf(data = arg_dept %>% filter(gid == 4), aes(geometry=geometry), fill = 'lightblue', alpha = .3, color = "transparent") +
-  geom_sf(data = arg_prov %>% filter(gid %in% c(1,19)), aes(geometry=geometry), color = 'firebrick', fill = 'transparent')
+  geom_sf(data = arg_prov %>% filter(gid %in% c(1,19)), aes(geometry=geometry), color = 'firebrick', fill = 'transparent') +
+  geom_sf_text(data = arg_prov %>% filter(gid %in% c(1,19)), aes(label = nam))
+
+ggplot() +
+  geom_sf(data = arg_dept %>% filter(gid == 5), aes(geometry=geometry), fill = 'lightblue', alpha = 1, color = "transparent") +
+  geom_sf(data = arg_prov %>% filter(gid %in% c(4,13,17)), aes(geometry=geometry), color = 'firebrick', fill = 'transparent') +
+  geom_sf_text(data = arg_prov %>% filter(gid %in% c(4,13,17)), aes(label = nam))
+
+
+ggplot() +
+  geom_sf(data = arg_dept %>% filter(gid == 529), aes(geometry=geometry), fill = 'lightblue', alpha = 1, color = "transparent") +
+  geom_sf(data = arg_prov %>% filter(gid %in% c(20)), aes(geometry=geometry), color = 'firebrick', fill = 'transparent') +
+  geom_sf_text(data = arg_prov %>% filter(gid %in% c(20)), aes(label = nam)) +
+geom_sf_text(data = arg_dept %>% filter(gid == 529), aes(label = nam))
+
+
+
