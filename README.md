@@ -171,6 +171,8 @@ Get rendered features, get layers
 ```js
 app.map_obj.queryRenderedFeatures();
 
+app.map_obj.queryRenderedFeatures({ layers: ['my-layer-name'] });
+
 // gera lista das layers (pega os ids de cada feature e filtra a primeira ocorrência de cada)
 app.map_obj.queryRenderedFeatures()
   .map(d => d.layer.id)
@@ -178,6 +180,10 @@ app.map_obj.queryRenderedFeatures()
 
 // all style layers
 app.map_obj.getStyle().layers;
+
+// get Features from a given layer
+
+dash.map_obj.querySourceFeatures(type, {sourceLayer: type})
 
 ```
 
