@@ -7,13 +7,15 @@ library(jsonlite)
 
 dados_geo_depto <- read_sf(dsn = './geo_data/pais_depto', layer = 'pxdptodatosok')
 
+dados_geo_locales <- read_sf(dsn = './geo_data/pais_locales', layer = 'pxlocdatos')
+
 sf::st_crs(dados_geo_depto)
 sf::st_crs(dados_geo_locales)
 
-dados_geo_locales <- read_sf(dsn = './geo_data/pais_locales', layer = 'pxlocdatos')
-
 # teste
-ggplot(dados_geo_locales %>% filter(provincia == "Salta")) + geom_sf() + geom_sf(data = arg_prov)
+ggplot() + 
+  geom_sf(data = arg_prov) +
+  geom_sf(data= dados_geo_locales %>% filter(provincia == "Salta"), color = " hotpink", size = 1)
 
 ## Provincias 
 
@@ -120,7 +122,12 @@ jsonlite::write_json(output, "../desiertos.github.io/data/output_dash.json")
 arg_prov_geojson <- geojsonsf::sf_geojson(arg_prov, digits = 6)
 write_file(arg_prov_geojson, "../desiertos.github.io/data/maps/arg_prov.geojson")
 
+datos_locales_geom_sf <- sf::st_as_sf(datos_locales_geom)
+
+datos_locales_geom_sf <- sf::st_transform(datos_locales_geom_sf, sf::st_crs(dados_geo_depto))
+
 arg_localidads_geojson <- geojsonsf::sf_geojson(
-  sf::st_as_sf(datos_locales_geom), 
+  datos_locales_geom_sf, 
   digits = 6)
+
 write_file(arg_localidads_geojson, "../desiertos.github.io/data/maps/arg_localidads.geojson")
