@@ -24,6 +24,14 @@ https://www.notion.so/Resumen-de-informaciones-en-el-dashboard-81701429043d4f7fb
 [ ] video Mapbox x Greensock
 [ ] mascara
 
+## to-do dashboard
+
+[ ] throttling mousemove events?
+[ ] labels mapa
+[ ] avoid re-rendering if selection is the currentplace
+
+
+
 Pode ser útil para o "dashboard"
 https://docs.mapbox.com/mapbox-gl-js/example/offset-vanishing-point-with-padding/
 
@@ -240,3 +248,16 @@ O artigo do Matt sobre 3D.
 It is really important to have in mind the structure of the features array, and of the man objects with which we deal.
 
 Frio na barriga quando vi o protótipo da Fernanda.
+
+
+
+### applicação js
+
+O resultado da busca dispara um succesful_result
+O resultado do clique também
+
+os campos a preencher têm sempre uma mesma classe, e um data atribute "data-text_field". o valor desse text_field corresponde às chaves de dash.vis.location_card.text_field, onde constam funções que retrieve a informação em questão do local apropriado.
+
+a vantagem de usar this é que se o componente está bem fechado e definido, é mais fácil movê-lo de um lado para o outro.
+
+no próprio monitor de click de províncias, já chama o highlight
