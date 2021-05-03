@@ -29,6 +29,9 @@ https://www.notion.so/Resumen-de-informaciones-en-el-dashboard-81701429043d4f7fb
 [ ] throttling mousemove events?
 [ ] labels mapa
 [ ] avoid re-rendering if selection is the currentplace
+[ ] mudar para grid
+[ ] separation lines
+[ ] lables min max stripplot
 
 
 
