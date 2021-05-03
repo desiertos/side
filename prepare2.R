@@ -83,6 +83,15 @@ provincias <- provincias_raw %>%
   #left_join(arg_prov, by = c("Provincia" = "nam"))
   left_join(bboxes, by = c("Provincia" = "nam"))
 
+## aggregate data from lower level
+
+summary_prov_from_locales <- datos_locales_geom %>%
+  group_by(provincia) %>%
+  summarise_at(.vars = vars('pob', 'cant_medios', 'cant_periodistas'), .funs = ~sum(., na.rm = T))
+
+provincias_export <- provincias %>%
+  rename(local = Provincia) %>%
+  left_join(summary_prov_from_locales, by = c("local" = "provincia"))
 
 
 # lista de locais para pesquisa -------------------------------------------
@@ -109,11 +118,13 @@ lista_locais <- bind_rows(
 
 # output ------------------------------------------------------------------
 
-locales_export <- datos_locales_geom %>% select(-geometry)
+locales_export <- datos_locales_geom %>% 
+  select(-geometry) %>% 
+  rename(local = localidad)
 
 output <- list(
-  "localidad" = locales_export,
-  "provincia" = provincias,
+  "localidad" = locales_export ,
+  "provincia" = provincias_export,
   "lista_locais" = lista_locais
 )
 
