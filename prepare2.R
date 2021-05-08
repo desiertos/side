@@ -142,3 +142,25 @@ arg_localidads_geojson <- geojsonsf::sf_geojson(
   digits = 6)
 
 write_file(arg_localidads_geojson, "../desiertos.github.io/data/maps/arg_localidads.geojson")
+
+
+
+# plot --------------------------------------------------------------------
+
+cores <- c("1" = "#D77E5B", "2" = "#E1BA9B", "3" = "#CEBF74", "4" = "#7C9A68")
+
+nomes <- c("1" = "Desiertos", "2" = "Semidesiertos", "3" = "Semibosques", "4" = "Bosques")
+
+ggplot(locales_export, aes(y = provincia, x = pobXmedios, color = categoria)) +
+  geom_point(size = 3, alpha = .5) +
+  scale_color_manual(values = cores, labels = nomes) +
+  scale_x_continuous(labels = function(x){format(x, big.mark = ".")}) +
+  labs(y = NULL) +
+  theme_bw() +
+  theme(text = element_text(family = "Inter"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.border = element_blank(),
+        axis.line.x = element_line(),
+        axis.text.x = element_text(size = 8),
+        legend.position = "none")
