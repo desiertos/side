@@ -30,8 +30,8 @@ https://www.notion.so/Resumen-de-informaciones-en-el-dashboard-81701429043d4f7fb
 [ ] labels mapa
 [ ] avoid re-rendering if selection is the currentplace
 [ ] mudar para grid
-[ ] separation lines
-[ ] lables min max stripplot
+[x] separation lines
+[ ] labelchros min max stripplot
 [ ] oportunidades de melhoria da performance. se está gerando o mesmo gráfico para o mesmo tipo de local, não precisa regerar as escalas, por exemplo.
 
 
