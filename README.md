@@ -19,6 +19,7 @@ https://www.notion.so/Resumen-de-informaciones-en-el-dashboard-81701429043d4f7fb
 [ ] mensagem de erro para quando valor da busca é inválido
 [ ] tirar valores de autocompletar da busca?
 
+
 ## to-do conceitual
 
 [ ] video Mapbox x Greensock
@@ -26,13 +27,16 @@ https://www.notion.so/Resumen-de-informaciones-en-el-dashboard-81701429043d4f7fb
 
 ## to-do dashboard
 
-[ ] throttling mousemove events?
+[x] throttling mousemove events? (outra solução na verdade)
 [ ] labels mapa
-[ ] avoid re-rendering if selection is the currentplace
+[x] avoid re-rendering if selection is the currentplace
 [ ] mudar para grid
 [x] separation lines
-[ ] labelchros min max stripplot
+[x] labelchros min max stripplot
 [ ] oportunidades de melhoria da performance. se está gerando o mesmo gráfico para o mesmo tipo de local, não precisa regerar as escalas, por exemplo.
+[ ] trocar nomes 'province' para 'provincia'
+[ ] force-layout
+[ ]
 
 
 
@@ -212,6 +216,22 @@ app.map_obj.moveLayer("provinces", "road-label")
 app.map.province.toggle_highlight_border_provincia('San Luis');
 ```
 
+Para ver os valores amarrados a cada elemento de uma seleção:
+
+```js
+d3.selectAll('circle').each(function(d) { console.log(d3.select(this).datum().x)})
+
+d3.selectAll('circle').each(function(d) { 
+
+  let node = d3.select(this);  
+  let dat = d3.select(this).datum();
+  
+  console.log(dat.x, node.attr('cx'), dat.y, node.attr('cy'))
+
+  
+})
+```
+
 ## R
 
 magick
@@ -265,3 +285,71 @@ os campos a preencher têm sempre uma mesma classe, e um data atribute "data-tex
 a vantagem de usar this é que se o componente está bem fechado e definido, é mais fácil movê-lo de um lado para o outro.
 
 no próprio monitor de click de províncias, já chama o highlight
+
+## bizarrices encontradas
+
+```js
+let tipos = ["a", "b"]
+
+let data = [{name: "tiago"}, {name: "melissa"}]
+
+data_double = [];
+
+tipos.forEach(tipo => {
+
+  let data_temp = [...data];
+
+  data_temp.forEach(d => {
+    d['tipo'] = tipo;
+  })
+  
+  data_double.push(...data_temp)
+})
+
+// data_double
+// (4) [{…}, {…}, {…}, {…}]
+// 0:
+// name: "tiago"
+// tipo: "b"
+// __proto__: Object
+// 1:
+// name: "melissa"
+// tipo: "b"
+// __proto__: Object
+// 2:
+// name: "tiago"
+// tipo: "b"
+// __proto__: Object
+// 3:
+// name: "melissa"
+// tipo: "b"
+
+```
+
+Todos ficaram com tipo "b"! Alguma loucura de referência aí. Corrigi fazendo uma cópia do elemento primeiro:
+
+```js
+let tipos = ["a", "b"]
+
+let data = [{name: "tiago"}, {name: "melissa"}]
+
+data_double2 = [];
+
+tipos.forEach(tipo => {
+
+  let data_temp = [...data];
+
+  data_temp.forEach(d => {
+
+    new_d = {...d};
+
+    new_d['tipo'] = tipo;
+
+    data_double2.push(new_d);
+
+  })
+  
+})
+
+```
+
