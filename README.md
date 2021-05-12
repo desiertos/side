@@ -421,3 +421,9 @@ topoquantize 1e5 \
   < argentina_4topo_simp.json \
   > argentina.json
 ```
+
+
+reflections
+
+always keep at hand an element from the data, so you don't lose time trying to remember its structure, variable names etc.
+
