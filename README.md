@@ -80,6 +80,14 @@ https://docs.mapbox.com/help/troubleshooting/mapbox-gl-js-performance/
 
 https://blog.mapbox.com/how-the-pudding-team-uses-mapbox-4b5b8577001f
 
+### Hillshade
+
+https://blog.mapbox.com/realistic-terrain-with-custom-styling-ce1fe98518ab
+https://docs.mapbox.com/mapbox-gl-js/example/hillshade/
+https://blog.mapbox.com/mapbox-cali-terrain-style-bea8cd410523
+https://github.com/mzdraper/maptime-mapbox-parks/blob/master/Beginner/beginner.md
+
+
 ### 3D
 
 https://blog.mapbox.com/3d-mapping-global-population-density-how-i-built-it-141785c91107
@@ -353,3 +361,63 @@ tipos.forEach(tipo => {
 
 ```
 
+
+## d3 maps
+
+argentina
+```js
+
+d3.geoTransverseMercator().center([2.5, -38.5]).rotate([66, 0]).scale((height * 56.5) / 33).translate([(width / 2), (height / 2)]);
+
+d3.geoTransverseMercator().center([2.5, -38.5]).rotate([66, 0]).scale((590 * 56.5) / 33).translate([(460 / 2), (590 / 2)]);
+```
+
+1. Projection
+
+```bash
+
+geoproject 'd3.geoTransverseMercator().center([2.5, -38.5]).rotate([66, 0]).scale((590 * 56.5) / 33).translate([(460 / 2), (590 / 2)])' < provincias.json > provincias_1proj.json
+
+geoproject 'd3.geoTransverseMercator().center([2.5, -38.5]).rotate([66, 0]).scale((590 * 56.5) / 33).translate([(460 / 2), (590 / 2)])' < municipios.json > municipios_1proj.json
+
+```
+
+2. convert to ndjson
+
+```bash
+
+ndjson-split 'd.features' \
+  < provincias_1proj.json \
+  > provincias_2proj.ndjson
+
+ndjson-split 'd.features' \
+  < municipios_1proj.json \
+  > municipios_2proj.ndjson
+
+```
+
+3. convert to topojson
+
+```bash
+geo2topo -n \
+  provincia=provincias_2proj.ndjson \
+  localidad=municipios_2proj.ndjson \
+  > argentina_3topo.json
+
+```
+
+4. simplify
+
+```bash
+toposimplify -p 1 -f \
+  < argentina_3topo.json \
+  > argentina_4topo_simp.json
+
+```
+5. quantize
+
+```bash
+topoquantize 1e5 \
+  < argentina_4topo_simp.json \
+  > argentina.json
+```
