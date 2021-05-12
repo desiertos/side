@@ -25,7 +25,10 @@ mun_geo <- geojsonsf::sf_geojson(mun_sf)
 write_file(mun_geo, "./geo_data/d3/mun_.geojson")
 #write_file(prov_geo, "./geo_data/d3/prov_.geojson")
 
-
+mun_$poblacion_residente %>% 
+  as.numeric() %>% 
+  sum() %>% 
+  format(big.mark = ".")
 
 
 
