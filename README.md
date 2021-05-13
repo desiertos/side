@@ -39,6 +39,8 @@ https://www.notion.so/Resumen-de-informaciones-en-el-dashboard-81701429043d4f7fb
 [ ]
 
 
+[ ] usar o mesmo polígono para a máscara e para as províncias, para se encaixarem direitinho
+
 
 Pode ser útil para o "dashboard"
 https://docs.mapbox.com/mapbox-gl-js/example/offset-vanishing-point-with-padding/
