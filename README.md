@@ -429,3 +429,31 @@ reflections
 
 always keep at hand an element from the data, so you don't lose time trying to remember its structure, variable names etc.
 
+
+
+
+dash.map_obj.on('click', 'provincia', dash.map.province.click_event_handler);
+
+                    // como tem o layer aqui, dá para no handler pegar o e.features!
+
+
+                                // handler_click_event : function(e) {
+
+            //     let features = dash.map_obj.queryRenderedFeatures(
+            //         e.point, 
+            //         //{ layers: ['provincia'] });
+            //         { layers: ['provincia', 'localidad'] });
+    
+            //     if (features.length) {
+    
+            //         let type = features[0].layer.id;
+    
+            //         if (type == 'provincia') type = 'province';
+    
+            //         console.log("Clicked on a", type, ". Detalhes: ", features, e);
+    
+            //         dash.map[type].click_event_handler(features[0]);
+    
+            //     }
+    
+            // },
