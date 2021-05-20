@@ -59,6 +59,10 @@ for (i in 1:nrow(prov_sf)) {
   }
 }
 
+prov_sf <- prov_sf %>%
+  left_join(bboxes, by = 'nam')
+  
+
 mun_sf <- mun_sf %>%
   mutate(provincia = provincia_convert[provincia],
          nam = `departamento/municipio/barrio`) %>%
@@ -129,45 +133,3 @@ output_dash <- list(
 # interessante, se usar o <- ali em cima, ele ignora os nomes e gera uma array com as 3 arrays, em vez de um objeto com as 3 arrays.
 
 jsonlite::write_json(output_dash, '../desiertos.github.io/data/output_dash.json')
-
-
-
-
-mun_$poblacion_residente %>% 
-  as.numeric() %>% 
-  sum() %>% 
-  format(big.mark = ".")
-
-
-
-
-bbox_arg_continental <- data.frame(
-  lon = c(-53, -53, -75, -75),
-  lat  = c(-21, -56, -56, -21)
-)
-
-polygon <- bbox_arg_continental %>%
-  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>%
-  summarise(geometry = st_combine(geometry)) %>%
-  st_cast("POLYGON")
-
-arg <- sf::st_simplify(arg_prov, dTolerance = .1)
-
-arg_cont <- st_intersection(polygon, arg)
-
-ggplot(arg_cont) + geom_sf()
-
-write_file(
-  geojsonsf::sf_geojson(arg_cont), 
-  "./geo_data/d3/provv.geojson")
-
-
-
-# c("deserts_count", "relacion_poblacion_residente/medios", "semiforests_count", 
-#   "relacion_poblacion_residente/periodistas", "semiserts_count", 
-#   "populacion_en_areas_recenseadas", "cantidad_de_medios", "categoria", 
-#   "semiforests_percentage", "promedio_categorias", "cantidad_de_periodistas", 
-#   "provincia", "forests_percentage", "forests_count", "deserts_percentage", 
-#   "semideserts_percentage", "poblacion_total", "codpcia", "nam", 
-#   "local", "xmin", "ymin", "xmax", "ymax", "geometry")
-
