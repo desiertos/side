@@ -67,7 +67,8 @@ mun_sf <- mun_sf %>%
          cant_medios = cantidad_de_medios,
          cant_periodistas = cantidad_de_periodistas,
          pobXmedios = `relacion_poblacion_residente/medios`,
-         pobXperiodistas = `relacion_poblacion_residente/periodistas`)
+         pobXperiodistas = `relacion_poblacion_residente/periodistas`,
+         local = nome_local)
 
 centr <- sf::st_centroid(mun_sf)
 
@@ -96,7 +97,7 @@ write_file(prov_geo, '../desiertos.github.io/data/maps/prov2.json')
 # lista
 
 mun_names <- data.frame(
-  local = mun_sf$nome_local, 
+  local = mun_sf$local, 
   provincia = mun_sf$provincia,
   text = paste0(mun_sf$nam, " (", mun_sf$provincia, ")"),
   tipo = 'localidad')
@@ -120,10 +121,12 @@ prov_out <- prov_sf
 sf::st_geometry(prov_out) <- NULL
 
 output_dash <- list(
-  localidad <- mun_out,
-  provincia <- prov_out,
-  lista_locais <- lista_locais
+  'localidad' = mun_out,
+  'provincia' = prov_out,
+  'lista_locais' = lista_locais
 )
+
+# interessante, se usar o <- ali em cima, ele ignora os nomes e gera uma array com as 3 arrays, em vez de um objeto com as 3 arrays.
 
 jsonlite::write_json(output_dash, '../desiertos.github.io/data/output_dash.json')
 
