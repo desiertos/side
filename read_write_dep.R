@@ -60,7 +60,12 @@ for (i in 1:nrow(prov_sf)) {
 }
 
 prov_sf <- prov_sf %>%
-  left_join(bboxes, by = 'nam')
+  left_join(bboxes, by = 'nam') %>%
+  rename(pob = poblacion_total,
+         cant_medios = cantidad_de_medios,
+         cant_periodistas = cantidad_de_periodistas,
+         pobXmedios = `relacion_poblacion_residente/medios`,
+         pobXperiodistas = `relacion_poblacion_residente/periodistas`)  
   
 
 mun_sf <- mun_sf %>%
