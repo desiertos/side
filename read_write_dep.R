@@ -70,7 +70,8 @@ prov_sf <- prov_sf %>%
 
 mun_sf <- mun_sf %>%
   mutate(provincia = provincia_convert[provincia],
-         nam = `departamento/municipio/barrio`) %>%
+         nam = `departamento/municipio/barrio`,
+         randId = row_number()) %>%
   left_join(bboxes, by = c('provincia' = 'nam')) %>%
   rename(pob = poblacion_residente,
          cant_medios = cantidad_de_medios,
@@ -81,13 +82,12 @@ mun_sf <- mun_sf %>%
 
 centr <- sf::st_centroid(mun_sf)
 
-for (i in 1:length(centr)) {
+for (i in 1:nrow(centr)) {
   
-  mun_sf$xc[i] <- centr$geometry[[i]][1]
-  mun_sf$yc[i] <- centr$geometry[[i]][2]
+  mun_sf[i, 'xc'] <- centr$geometry[[i]][1]
+  mun_sf[i, 'yc'] <- centr$geometry[[i]][2]
   
 }
-
 
 mun_geo <- geojsonsf::sf_geojson(mun_sf)
 #prov_geo <- geojsonsf::sf_geojson(prov_sf, digits = 6)
