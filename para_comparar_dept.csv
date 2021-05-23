@@ -1,0 +1,530 @@
+"";"nam";"gid"
+"1";"General Lavalle";31
+"2";"La Costa";32
+"3";"Magdalena";33
+"4";"Vicente López";34
+"5";"San Justo";91
+"6";"Comuna 14";245
+"7";"Cerrillos";94
+"8";"Susques";138
+"9";"Marcos Paz";299
+"10";"Concordia";1
+"11";"Federal";2
+"12";"Gualeguaychú";3
+"13";"Islas del Ibicuy";4
+"14";"Victoria";5
+"15";"Diamante";6
+"16";"Uruguay";7
+"17";"Paraná";8
+"18";"Saladillo";9
+"19";"Las Flores";10
+"20";"Rojas";11
+"21";"Escobar";12
+"22";"José C. Paz";13
+"23";"San Antonio de Areco";14
+"24";"Maipú";15
+"25";"Antártida Argentina";160
+"26";"Iguazú";478
+"27";"Ushuaia";527
+"28";"General Ortiz de Ocampo";64
+"29";"Corpen Aike";76
+"30";"O'Higgins";16
+"31";"Moreno";17
+"32";"La Matanza";18
+"33";"Tandil";22
+"34";"Coronel Suárez";23
+"35";"Adolfo Gonzales Chaves";24
+"36";"Bahía Blanca";25
+"37";"General Alvarado";26
+"38";"General Pueyrredón";27
+"39";"Mar Chiquita";28
+"40";"Villa Gesell";29
+"41";"Conesa";77
+"42";"Pinamar";30
+"43";"General Paz";19
+"44";"General Guido";20
+"45";"General Juan Madariaga";21
+"46";"Alberdi";35
+"47";"Juan Felipe Ibarra";36
+"48";"General Taboada";37
+"49";"Cruz del Eje";85
+"50";"Punilla";86
+"51";"Santa María";87
+"52";"Gaiman";78
+"53";"Rawson";79
+"54";"Rivadavia";38
+"55";"Ojo de Agua";39
+"56";"Choya";40
+"57";"Gobernador Dupuy";41
+"58";"Cachi";42
+"59";"Chicoana";43
+"60";"La Viña";44
+"61";"Rauch";45
+"62";"Metán";46
+"63";"Molinos";47
+"64";"Minas";88
+"65";"San Alberto";89
+"66";"Río Segundo";90
+"67";"Salliqueló";48
+"68";"Berazategui";49
+"69";"General Güemes";50
+"70";"San Carlos";51
+"71";"Santa Rosa";52
+"72";"Unión";92
+"73";"Rivadavia";53
+"74";"Tornquist";54
+"75";"La Paz";55
+"76";"Coronel Pringles";56
+"77";"Tigre";57
+"78";"Chamical";65
+"79";"Tercero Arriba";93
+"80";"General Pinto";58
+"81";"San Cayetano";59
+"82";"Tres Arroyos";60
+"83";"Coronel Dorrego";61
+"84";"Necochea";62
+"85";"Independencia";63
+"86";"General Lamadrid";80
+"87";"Ayacucho";81
+"88";"Tapalqué";313
+"89";"Arauco";66
+"90";"Lezama";67
+"91";"Chascomús";68
+"92";"Punta Indio";69
+"93";"El Carmen";70
+"94";"Santa María";71
+"95";"Campana";72
+"96";"Santa Rosa";73
+"97";"La Paz";74
+"98";"Magallanes";75
+"99";"Comuna 6";82
+"100";"12 de Octubre";83
+"101";"Tulumba";84
+"102";"Río Cuarto";95
+"103";"Tupungato";96
+"104";"Pilagás";97
+"105";"Laishi";98
+"106";"Pirané";99
+"107";"General Güemes";100
+"108";"Valcheta";101
+"109";"San Antonio";102
+"110";"9 de Julio";103
+"111";"Ñorquinco";104
+"112";"25 de Mayo";105
+"113";"Villarino";111
+"114";"Vera";175
+"115";"Telsen";106
+"116";"Pilcaniyeu";107
+"117";"Adolfo Alsina";108
+"118";"Capital";221
+"119";"Pellegrini";109
+"120";"General Roca";114
+"121";"General Alvear";115
+"122";"La Caldera";116
+"123";"San Rafael";117
+"124";"Anta";118
+"125";"Picún Leufú";119
+"126";"Zapala";120
+"127";"Aluminé";121
+"128";"Sarmiento";122
+"129";"Antofagasta de la Sierra";222
+"130";"San Carlos";223
+"131";"Tunuyán";224
+"132";"Luján de Cuyo";225
+"133";"Puán";110
+"134";"Presidente Roque Sáenz Peña";112
+"135";"Comuna 1";123
+"136";"Comuna 4";124
+"137";"General Belgrano";169
+"138";"Futaleufú";226
+"139";"Tapenagá";161
+"140";"Comuna 5";125
+"141";"Chapaleufú";177
+"142";"General Villegas";113
+"143";"Comuna 12";129
+"144";"Fray Mamerto Esquiú";130
+"145";"9 de Julio";176
+"146";"Cushamen";202
+"147";"Lácar";190
+"148";"Hucal";146
+"149";"Río Chico";227
+"150";"Lago Argentino";228
+"151";"El Cuy";229
+"152";"Comuna 7";126
+"153";"Iruya";139
+"154";"Quitilipi";162
+"155";"Los Lagos";189
+"156";"Comuna 10";127
+"157";"Ñorquín";196
+"158";"Realicó";178
+"159";"Las Heras";230
+"160";"Lavalle";231
+"161";"Comuna 11";128
+"162";"Caleu Caleu";147
+"163";"Lihuel Calel";148
+"164";"Curacó";149
+"165";"Belén";191
+"166";"Confluencia";192
+"167";"Picunches";193
+"168";"Añelo";194
+"169";"Loncopué";195
+"170";"San Martín";131
+"171";"Yavi";132
+"172";"Santa Catalina";133
+"173";"San Pedro";134
+"174";"Valle Grande";135
+"175";"Patiño";136
+"176";"Bermejo";137
+"177";"Matacos";140
+"178";"Los Andes";141
+"179";"Orán";142
+"180";"Tilcara";143
+"181";"Palpalá";144
+"182";"Loventué";145
+"183";"Eldorado";158
+"184";"San Pedro";159
+"185";"Limay Mahuida";150
+"186";"Puelén";151
+"187";"Chalileo";152
+"188";"Chical Co";153
+"189";"Quebrachos";154
+"190";"Monte Caseros";155
+"191";"Esquina";156
+"192";"Montecarlo";157
+"193";"Presidencia de la Plaza";163
+"194";"Pergamino";164
+"195";"Sargento Cabral";165
+"196";"Independencia";166
+"197";"Belgrano";188
+"198";"Lago Buenos Aires";203
+"199";"Malargüe";232
+"200";"Pichi Mahuida";233
+"201";"Adolfo Alsina";234
+"202";"Río Senguer";235
+"203";"Mayor Luis J. Fontana";167
+"204";"Fray Justo Santa María de Oro";168
+"205";"Las Colonias";170
+"206";"San Justo";171
+"207";"San Cristóbal";172
+"208";"San Javier";173
+"209";"General Obligado";174
+"210";"Maracó";179
+"211";"Trenel";180
+"212";"Copo";181
+"213";"Capital";197
+"214";"Ancasti";198
+"215";"Pehuenches";199
+"216";"Minas";200
+"217";"Chos Malal";201
+"218";"La Candelaria";345
+"219";"Guasayán";220
+"220";"Biedma";409
+"221";"Río Hondo";182
+"222";"Vinchina";183
+"223";"Capital";184
+"224";"Río Seco";185
+"225";"Avellaneda";186
+"226";"General Roca";187
+"227";"Comuna 2";204
+"228";"Güer Aike";210
+"229";"Comuna 13";209
+"230";"Yerba Buena";424
+"231";"Comuna 8";205
+"232";"Pomán";206
+"233";"Bariloche";236
+"234";"Huiliches";237
+"235";"Catán Lil";238
+"236";"Silípica";344
+"237";"Sobremonte";207
+"238";"Río Grande";208
+"239";"Banda";211
+"240";"Paso de Indios";212
+"241";"9 de Julio";487
+"242";"Mártires";213
+"243";"Sarmiento";214
+"244";"Deseado";215
+"245";"Languiñeo";216
+"246";"Belgrano";217
+"247";"Aguirre";218
+"248";"Maipú";219
+"249";"Humahuaca";402
+"250";"Almirante Brown";239
+"251";"Rosario de la Frontera";240
+"252";"Collón Curá";241
+"253";"Comuna 3";242
+"254";"Famaillá";420
+"255";"General Donovan";499
+"256";"Robles";243
+"257";"Almirante Brown";251
+"258";"Nogoyá";252
+"259";"Tala";253
+"260";"Loreto";246
+"261";"Gualeguay";254
+"262";"Federación";255
+"263";"La Paz";256
+"264";"Feliciano";257
+"265";"Toay";448
+"266";"Capital";244
+"267";"Colón";247
+"268";"Villaguay";248
+"269";"Castelli";249
+"270";"San Salvador";250
+"271";"Libertador General San Martín";500
+"272";"Coronel Pringles";501
+"273";"Chacabuco";502
+"274";"General Las Heras";298
+"275";"Presidente Perón";258
+"276";"Junín";280
+"277";"Curuzú Cuatiá";526
+"278";"San Miguel";463
+"279";"Malvinas Argentinas";287
+"280";"Brandsen";259
+"281";"Chivilcoy";295
+"282";"Alberti";296
+"283";"Bragado";297
+"284";"Carlos Casares";260
+"285";"General Viamonte";300
+"286";"Ezeiza";301
+"287";"Angaco";514
+"288";"Candelaria";473
+"289";"Carlos Tejedor";261
+"290";"25 de Mayo";262
+"291";"9 de Julio";263
+"292";"Pehuajó";264
+"293";"Santa Bárbara";525
+"294";"Trenque Lauquen";265
+"295";"General Belgrano";266
+"296";"Capayán";267
+"297";"Monte";268
+"298";"Roque Pérez";269
+"299";"Olavarría";270
+"300";"Merlo";271
+"301";"Esteban Echeverría";272
+"302";"Arrecifes";273
+"303";"Capitán Sarmiento";274
+"304";"General Felipe Varela";294
+"305";"Carmen de Areco";275
+"306";"Salto";276
+"307";"Exaltación de la Cruz";277
+"308";"San Miguel";278
+"309";"San Andrés de Giles";279
+"310";"Mercedes";281
+"311";"Pilar";282
+"312";"Luján";283
+"313";"Hurlingham";284
+"314";"Empedrado";464
+"315";"Ituzaingó";465
+"316";"Capital";466
+"317";"Morón";285
+"318";"Chacabuco";286
+"319";"Godoy Cruz";349
+"320";"Cafayate";350
+"321";"San Luis del Palmar";467
+"322";"San Cosme";468
+"323";"Itatí";469
+"324";"Berón de Astrada";470
+"325";"Tres Lomas";318
+"326";"Ayacucho";319
+"327";"Guaminí";320
+"328";"Ensenada";321
+"329";"General Manuel Belgrano";476
+"330";"Guaymallén";341
+"331";"General San Martín";288
+"332";"Lincoln";289
+"333";"Laprida";322
+"334";"San Isidro";323
+"335";"Benito Juárez";324
+"336";"Colón";325
+"337";"Tolhuin";471
+"338";"Capital";472
+"339";"Ituzaingó";290
+"340";"General Rodríguez";291
+"341";"Suipacha";292
+"342";"Tres de Febrero";293
+"343";"Florencio Varela";302
+"344";"Navarro";303
+"345";"Cañuelas";304
+"346";"Moreno";339
+"347";"Cainguás";474
+"348";"Libertador General San Martín";475
+"349";"San Vicente";305
+"350";"Lobos";306
+"351";"General Alvear";307
+"352";"Quilmes";308
+"353";"Pila";309
+"354";"General La Madrid";310
+"355";"Bolívar";311
+"356";"Chacabuco";340
+"357";"Guaraní";477
+"358";"Balcarce";312
+"359";"Hipólito Yrigoyen";314
+"360";"Oberá";480
+"361";"Capital";444
+"362";"Dolores";315
+"363";"Azul";316
+"364";"Daireaux";317
+"365";"Juárez Celman";342
+"366";"Capital";343
+"367";"25 de Mayo";479
+"368";"Figueroa";326
+"369";"Saavedra";327
+"370";"Monte Hermoso";328
+"371";"Lobería";329
+"372";"Berisso";330
+"373";"Tordillo";331
+"374";"San Fernando";332
+"375";"Zárate";333
+"376";"Ramallo";334
+"377";"San Nicolás";335
+"378";"Salavina";336
+"379";"Pellegrini";337
+"380";"Avellaneda";338
+"381";"San Ignacio";481
+"382";"Leandro N. Alem";482
+"383";"San Javier";483
+"384";"Maipú";346
+"385";"Guachipas";347
+"386";"Capital";348
+"387";"Islas del Atlántico Sur";528
+"388";"Pocho";529
+"389";"San Martín";351
+"390";"Conhelo";443
+"391";"Junín";352
+"392";"Castro Barros";353
+"393";"General López";429
+"394";"Constitución";430
+"395";"Sanagasta";354
+"396";"General Juan Facundo Quiroga";358
+"397";"Chilecito";355
+"398";"Caseros";431
+"399";"Rosario";432
+"400";"San Lorenzo";433
+"401";"Iriondo";434
+"402";"Belgrano";435
+"403";"San Jerónimo";436
+"404";"Ángel Vicente Peñaloza";356
+"405";"Colón";357
+"406";"Rosario Vera Peñaloza";359
+"407";"General San Martín";360
+"408";"Totoral";373
+"409";"General San Martín";374
+"410";"San Javier";375
+"411";"Río Primero";376
+"412";"Tinogasta";377
+"413";"Marcos Juárez";378
+"414";"Famatina";361
+"415";"San Blas de Los Sauces";362
+"416";"San Antonio";363
+"417";"Cochinoca";403
+"418";"Tumbaya";404
+"419";"Dr. Manuel Belgrano";405
+"420";"Rinconada";406
+"421";"Ramón Lista";407
+"422";"La Poma";408
+"423";"Formosa";364
+"424";"Andalgalá";365
+"425";"Ambato";366
+"426";"Paclín";367
+"427";"Pilcomayo";368
+"428";"El Alto";369
+"429";"Tehuelches";370
+"430";"Escalante";371
+"431";"Ischilín";372
+"432";"Leandro N. Alem";379
+"433";"Libertador General San Martín";380
+"434";"Gastre";381
+"435";"General Arenales";382
+"436";"Bermejo";383
+"437";"Calamuchita";384
+"438";"Capital";421
+"439";"Cruz Alta";422
+"440";"Lules";423
+"441";"Rivadavia";385
+"442";"Patagones";386
+"443";"Juan Martín de Pueyrredón";387
+"444";"General Pedernera";388
+"445";"Tafí Viejo";425
+"446";"Comuna 9";389
+"447";"Junín";390
+"448";"Mitre";391
+"449";"Atamisqui";392
+"450";"Burruyacú";426
+"451";"Trancas";427
+"452";"Tafí del Valle";428
+"453";"Jiménez";393
+"454";"Coronel de Marina Leonardo Rosales";394
+"455";"Baradero";395
+"456";"San Pedro";396
+"457";"Santa Victoria";397
+"458";"General José de San Martín";398
+"459";"Rivadavia";399
+"460";"Rosario de Lerma";400
+"461";"Ledesma";401
+"462";"Florentino Ameghino";410
+"463";"Florentino Ameghino";411
+"464";"La Cocha";412
+"465";"Graneros";413
+"466";"Juan Bautista Alberdi";414
+"467";"Río Chico";415
+"468";"Simoca";416
+"469";"Chicligasta";417
+"470";"Monteros";418
+"471";"Leales";419
+"472";"San Martín";437
+"473";"La Capital";438
+"474";"Rancul";442
+"475";"Castellanos";439
+"476";"Garay";440
+"477";"Quemú Quemú";441
+"478";"Catriló";445
+"479";"Atreucó";446
+"480";"Guatraché";447
+"481";"Utracán";449
+"482";"Sauce";450
+"483";"San Martín";451
+"484";"Paso de los Libres";452
+"485";"Goya";453
+"486";"Lavalle";454
+"487";"San Roque";455
+"488";"General Alvear";456
+"489";"Concepción";457
+"490";"Bella Vista";458
+"491";"Santo Tomé";459
+"492";"Saladas";460
+"493";"General Paz";461
+"494";"Mburucuyá";462
+"495";"Concepción";484
+"496";"Apóstoles";485
+"497";"1° de Mayo";486
+"498";"San Fernando";488
+"499";"Valle Viejo";489
+"500";"General Belgrano";498
+"501";"San Lorenzo";490
+"502";"2 de Abril";491
+"503";"Lanús";492
+"504";"Lomas de Zamora";493
+"505";"Avellaneda";494
+"506";"25 de Mayo";495
+"507";"Libertad";496
+"508";"Comandante Fernández";497
+"509";"Comuna 15";503
+"510";"Capital";504
+"511";"Rivadavia";505
+"512";"Santa Lucía";506
+"513";"Rawson";507
+"514";"Pocito";508
+"515";"Zonda";509
+"516";"Ullum";510
+"517";"Chimbas";511
+"518";"9 de Julio";512
+"519";"Albardón";513
+"520";"San Martín";515
+"521";"Caucete";516
+"522";"25 de Mayo";517
+"523";"Sarmiento";518
+"524";"Calingasta";519
+"525";"Iglesia";520
+"526";"Jáchal";521
+"527";"Valle Fértil";522
+"528";"La Plata";523
+"529";"Mercedes";524
