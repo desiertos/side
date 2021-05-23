@@ -211,6 +211,10 @@ app.map_obj.getStyle().layers;
 
 dash.map_obj.querySourceFeatures(type, {sourceLayer: type})
 
+// or
+
+app.map_obj.queryRenderedFeatures({layers : ['localidad']})
+
 ```
 
 Move layers
@@ -457,3 +461,74 @@ dash.map_obj.on('click', 'provincia', dash.map.province.click_event_handler);
             //     }
     
             // },
+
+
+```js
+                app.map_obj.addSource('localidad', {
+                    type: 'geojson',
+                    'data' : app.data.localidad
+                });
+
+                app.map_obj.addLayer({
+                    'id': 'localidad',
+                    'type': 'circle',
+                    'source': 'localidad',
+                    'layout': {},
+                    'paint': {
+                      'circle-color': ['get', 'color_real'],
+                      'circle-opacity': 0.5,
+                      'circle-stroke-color' : ['get', 'color_real'],
+                      'circle-stroke-width' : 1,
+                      'circle-stroke-opacity' : 1,
+                      'circle-radius' : [
+                            'let',
+                            'sqrt_pob',
+                            ['sqrt', ['to-number', ['get', 'pob'] ] ],
+
+                            [
+                                'interpolate', ['linear'], ['zoom'],
+
+                                3, [
+                                    'interpolate', ['linear'],
+                                    ['var', 'sqrt_pob'],
+                                    //0, 0,
+                                    Math.sqrt(app.data.min_pob), 2,
+                                    Math.sqrt(app.data.max_pob), 15
+                                ],
+
+                                12, [
+                                    'interpolate', ['linear'],
+                                    ['var', 'sqrt_pob'],
+                                    //0, 0,
+                                    Math.sqrt(app.data.min_pob), 6,
+                                    Math.sqrt(app.data.max_pob), 45
+                                ]
+                                
+                            ]
+                        ]
+                    }
+                }, 'road-label'); // puts behind road-label
+
+```
+
+local: "iguazu_Misiones"
+provincia: "Misiones"
+text: "Iguazú  (Misiones)"
+tipo: "localidad"
+
+
+ant_medios: "1"
+cant_periodistas: "2"
+categoria: "1"
+codpcia: "54"
+departamento/municipio/barrio: "Iguazú "
+index: 8
+local: "iguazu_Misiones"
+nam: "Iguazú "
+nome_local: "iguazu"
+pob: "82227"
+pobXmedios: "82227"
+pobXperiodistas: "41113.5"
+provincia: "Misiones"
+randId: 9
+tipo_entidade: "departamento"
