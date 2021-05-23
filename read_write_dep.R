@@ -6,6 +6,7 @@ library(geojsonsf)
 #arg_dept <- read_sf(dsn = "./geo_data/departamento", layer = "departamento")
 arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
 
+
 the_crs <- sf::st_crs(arg_prov)
 
 mun <- geojson_sf("departamentos.json")
@@ -65,20 +66,21 @@ prov_sf <- prov_sf %>%
          cant_medios = cantidad_de_medios,
          cant_periodistas = cantidad_de_periodistas,
          pobXmedios = `relacion_poblacion_residente/medios`,
-         pobXperiodistas = `relacion_poblacion_residente/periodistas`)  
+         pobXperiodistas = `relacion_poblacion_residente/periodistas`) %>%
+  mutate(pob = as.numeric(pob))
   
 
 mun_sf <- mun_sf %>%
   mutate(provincia = provincia_convert[provincia],
          nam = `departamento/municipio/barrio`,
-         randId = row_number()) %>%
+         randId = row_number(),
+         local = paste(nome_local, provincia, sep = '_')) %>%
   left_join(bboxes, by = c('provincia' = 'nam')) %>%
   rename(pob = poblacion_residente,
          cant_medios = cantidad_de_medios,
          cant_periodistas = cantidad_de_periodistas,
          pobXmedios = `relacion_poblacion_residente/medios`,
-         pobXperiodistas = `relacion_poblacion_residente/periodistas`,
-         local = nome_local)
+         pobXperiodistas = `relacion_poblacion_residente/periodistas`)
 
 centr <- sf::st_centroid(mun_sf)
 
