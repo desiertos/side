@@ -9,8 +9,10 @@ arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
 locales <- read_sf(dsn = "./geo_data/pais_locales", layer = "pxlocdatos")
 depto_censo <- read_sf(dsn = "./geo_data/pais_depto", layer = "pxdptodatosok")
 mun_censo <- read_sf(dsn ="./geo_data/ign_municipio", layer = "ign_municipio")
+barrios <- read_sf(dsn ="./geo_data/shp_barrios", layer = "barrios_badata")
 
 the_crs <- sf::st_crs(arg_prov)
+sf::st_crs(barrios)
 
 mun <- geojson_sf("departamentos.json")
 
@@ -32,9 +34,11 @@ depts_inside_caba <- st_intersection(arg_dept, caba)
 arg_dept$nam[a[[1]]]
 
 ggplot() + 
-  geom_sf(data = caba, fill = "lightpink", color = "black") +
-  geom_sf(data = depts_inside_caba, fill ="lavender", alpha = .4, color = "hotpink") +
-  geom_sf_text(data = depts_inside_caba, aes(label = gid))
+  geom_sf(data = caba, fill = "white", color = "black") +
+  geom_sf_text(data = depts_inside_caba, aes(label = gid)) +
+  geom_sf(data = barrios, fill ="lightpink", alpha = .4, color = "tomato") +
+geom_sf(data = depts_inside_caba, fill ="transparent", alpha = .4, color = "hotpink")
+  
 
 # para o excel ------------------------------------------------------------
 
