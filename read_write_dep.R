@@ -9,15 +9,18 @@ arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
 
 the_crs <- sf::st_crs(arg_prov)
 
-mun <- geojson_sf("departamentos.json")
+#mun <- geojson_sf("departamentos.json")
 prov <- geojson_sf("../data/output/provincias.json")
 
 # setando na mão o crs
-mun <- sf::st_set_crs(mun, 5343)
+#mun <- sf::st_set_crs(mun, 5343)
 prov <- sf::st_set_crs(prov, 5343)
 
-mun_sf <- sf::st_transform(mun, the_crs)
+#mun_sf <- sf::st_transform(mun, the_crs)
 prov_sf <-  sf::st_transform(prov, the_crs)
+
+mun_sf <- readRDS('mun_completo.rds')
+
 
 provincia_convert = c(
   "misiones" = "Misiones", 

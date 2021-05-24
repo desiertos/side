@@ -4,13 +4,17 @@ library(geojsonsf)
 
 arg_dept <- read_sf(dsn = "./geo_data/departamento", layer = "departamento")
 arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
-barrios <- read_sf(dsn ="./geo_data/shp_barrios", layer = "barrios_badata")
+barrios_raw <- read_sf(dsn ="./geo_data/shp_barrios", layer = "barrios_badata")
 
 the_crs <- sf::st_crs(arg_prov)
 sf::st_crs(barrios)
 
-mun <- geojson_sf("departamentos.json")
+mun_raw <- geojson_sf("departamentos.json")
+mun_raw <- sf::st_set_crs(mun_raw, 5343)
+mun <- sf::st_transform(mun_raw, the_crs)
 
+#barrios_raw <- sf::st_set_crs(barrios_raw, 5343)
+barrios <- sf::st_transform(barrios_raw, the_crs)
 
 # depts without geometry --------------------------------------------------
 
@@ -62,12 +66,12 @@ mitre_no_geom <- mun_no_geom %>%
 
 mitre_geom <- barrios %>% filter(str_detect(BARRIO, "MITRE"))
 
-st_crs(mitre_geom)
+#st_crs(mitre_geom)
 
-mitre_geom_sf <- sf::st_transform(mitre_geom, the_crs)
+#mitre_geom_sf <- sf::st_transform(mitre_geom, the_crs)
 
 mitre <- mitre_no_geom
-st_geometry(mitre) <- st_geometry(mitre_geom_sf)
+st_geometry(mitre) <- st_geometry(mitre_geom)
 
 
 # join everything ---------------------------------------------------------
@@ -78,8 +82,20 @@ mun_completo <- bind_rows(
   mitre
 )
 
-
+# st_crs(mun_completo)
+# mun_completo <- sf::st_set_crs(mun_completo, 5343)
+# mun_completo_sf <- sf::st_transform(mun_completo, the_crs)
 
 # saves -------------------------------------------------------------------
 
 saveRDS(mun_completo, 'mun_completo.rds')
+
+
+
+# test plots --------------------------------------------------------------
+
+
+ggplot(mun_completo %>% filter(provincia == 'santa_cruz')) + geom_sf()
+ggplot(mun_completo %>% filter(provincia == 'santiago_del_estero')) + geom_sf()
+ggplot(mun_completo %>% filter(provincia == 'ciudad_autonoma_de_buenos_aires')) + geom_sf(fill = "lavender") + 
+  geom_sf(data = barrios, fill = "lightpink", alpha = .4)
