@@ -23,6 +23,9 @@ mun <- geojson_sf("departamentos.json")
 arg_prov_sem_geom <- arg_prov
 sf::st_geometry(arg_prov_sem_geom) <- NULL
 
+mun_sem_geom <- mun
+sf::st_geometry(mun_sem_geom) <- NULL
+
 
 # CABA --------------------------------------------------------------------
 
@@ -39,6 +42,12 @@ ggplot() +
   geom_sf(data = barrios, fill ="lightpink", alpha = .4, color = "tomato") +
 geom_sf(data = depts_inside_caba, fill ="transparent", alpha = .4, color = "hotpink")
   
+
+# PBA ---------------------------------------------------------------------
+
+pba <- arg_prov %>% filter(nam == "Buenos Aires")
+
+depts_inside_pba <- st_intersection(arg_dept, pba)
 
 # para o excel ------------------------------------------------------------
 
@@ -94,3 +103,41 @@ ggplot() +
   geom_sf(data = arg_dept %>% filter(nam == "Capital"), fill = "ghostwhite", color = "hotpink", alpha = .5) +
   geom_sf_text(data = arg_dept %>% filter(nam == "Capital"), aes(label = gid)) +
   scale_y_continuous(limits = c(-32, -26))
+
+
+# Finding Capital, de La Rioja
+
+ggplot() +
+  geom_sf(data = arg_prov %>% filter(nam == "La Rioja"), fill =  "darkgrey") +
+  geom_sf(data = arg_dept %>% filter(nam == "Capital"), fill = "ghostwhite", color = "hotpink", alpha = .5) +
+  geom_sf_text(data = arg_dept %>% filter(nam == "Capital"), aes(label = gid)) +
+  scale_y_continuous(limits = c(-32, -26))
+
+# Finding Islas, de Entre Ríos
+
+ggplot() +
+  geom_sf(data = arg_prov %>% filter(nam == "Entre Ríos"), fill =  "darkgrey") +
+  geom_sf(data = arg_dept %>% filter(str_detect(nam, "Islas")), fill = "ghostwhite", color = "hotpink", alpha = .5) +
+  geom_sf_text(data = arg_dept %>% filter(str_detect(nam, "Islas")), aes(label = gid)) +
+  scale_y_continuous(limits = c(-35, -30)) +
+  scale_x_continuous(limits = c(-65, -55))
+
+
+# Finding Capital, de Santiago del Estero
+
+ggplot() +
+  geom_sf(data = arg_prov %>% filter(nam == "Santiago del Estero"), fill =  "darkgrey") +
+  geom_sf(data = arg_dept %>% filter(nam == "Capital"), fill = "ghostwhite", color = "hotpink", alpha = .5) +
+  geom_sf_text(data = arg_dept %>% filter(nam == "Capital"), aes(label = gid))
+
+
+ggplot() +
+  geom_sf(data = arg_prov %>% filter(nam == "Santiago del Estero"), fill =  "darkgrey") +
+  geom_sf(data = arg_dept %>% filter(str_detect(nam, "Belgrano")), fill = "ghostwhite", color = "hotpink", alpha = .5) +
+  geom_sf_text(data = arg_dept %>% filter(str_detect(nam, "Belgrano")), aes(label = gid))
+
+
+ggplot() +
+  geom_sf(data = arg_prov %>% filter(nam == "Santiago del Estero"), fill =  "darkgrey") +
+  geom_sf(data = arg_dept %>% filter(str_detect(nam, "Sarmiento")), fill = "ghostwhite", color = "hotpink", alpha = .5) +
+  geom_sf_text(data = arg_dept %>% filter(str_detect(nam, "Sarmiento")), aes(label = gid))
