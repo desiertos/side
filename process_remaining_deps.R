@@ -1,0 +1,85 @@
+library(tidyverse)
+library(sf)
+library(geojsonsf)
+
+arg_dept <- read_sf(dsn = "./geo_data/departamento", layer = "departamento")
+arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
+barrios <- read_sf(dsn ="./geo_data/shp_barrios", layer = "barrios_badata")
+
+the_crs <- sf::st_crs(arg_prov)
+sf::st_crs(barrios)
+
+mun <- geojson_sf("departamentos.json")
+
+
+# depts without geometry --------------------------------------------------
+
+mun_with_geom <- mun %>%
+  filter(!sf::st_is_empty(mun))
+
+mun_no_geom_pre <- mun %>%
+  filter(sf::st_is_empty(mun)) %>%
+  filter(provincia != 'santa_cruz') %>% #(1)
+  mutate(provincia = ifelse(provincia == 'santiago_del_estero',
+                            'santa_cruz',
+                            provincia)) #(2)
+
+sf::st_geometry(mun_no_geom_pre) <- NULL
+         
+#(1) localities of santa cruz are municipalities, we need to insert the data for departments
+#(2) these were switched
+
+# gets data from santiago
+santiago <- readxl::read_excel('para_comparar.xlsx', sheet = 'santiago') %>%
+  mutate_all(as.character)
+
+mun_no_geom <- bind_rows(
+  mun_no_geom_pre,
+  santiago) %>%
+  mutate(nome_provincia = paste(nome_local, provincia, sep = "_"))
+
+
+# get the correpondence
+
+nome_provincia_gid <- readxl::read_excel('para_comparar.xlsx', sheet = 'correspondence')
+
+mun_no_geom_gid <- mun_no_geom %>%
+  filter(nome_local != "villa_general_mitre") %>%
+  left_join(nome_provincia_gid)
+
+geoms_dep <- arg_dept %>%
+  select(gid)
+
+mun_reman_geom <- mun_no_geom_gid %>%
+  left_join(geoms_dep) %>%
+  select(-gid, nome_provincia)
+
+
+# villa general mitre -----------------------------------------------------
+
+mitre_no_geom <- mun_no_geom %>%
+  filter(nome_local == "villa_general_mitre")
+
+mitre_geom <- barrios %>% filter(str_detect(BARRIO, "MITRE"))
+
+st_crs(mitre_geom)
+
+mitre_geom_sf <- sf::st_transform(mitre_geom, the_crs)
+
+mitre <- mitre_no_geom
+st_geometry(mitre) <- st_geometry(mitre_geom_sf)
+
+
+# join everything ---------------------------------------------------------
+
+mun_completo <- bind_rows(
+  mun_with_geom,
+  mun_reman_geom,
+  mitre
+)
+
+
+
+# saves -------------------------------------------------------------------
+
+saveRDS(mun_completo, 'mun_completo.rds')
