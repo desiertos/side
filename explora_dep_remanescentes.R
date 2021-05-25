@@ -141,3 +141,32 @@ ggplot() +
   geom_sf(data = arg_prov %>% filter(nam == "Santiago del Estero"), fill =  "darkgrey") +
   geom_sf(data = arg_dept %>% filter(str_detect(nam, "Sarmiento")), fill = "ghostwhite", color = "hotpink", alpha = .5) +
   geom_sf_text(data = arg_dept %>% filter(str_detect(nam, "Sarmiento")), aes(label = gid))
+
+
+
+# misiones ----------------------------------------------------------------
+
+misiones <- arg_prov %>% filter(nam == "Misiones")
+
+deps_misiones <- st_contains(misiones, arg_dept)
+deps_inside_misiones <- st_intersection(arg_dept, misiones)
+
+ggplot(deps_inside_misiones) + geom_sf(fill = 'lavender') + geom_sf_text(aes(label = gid))
+
+
+# la rioja ----------------------------------------------------------------
+
+prov <- arg_prov %>% filter(nam == "La Rioja")
+
+deps_prov <- st_contains(prov, arg_dept)
+deps_inside_prov <- st_intersection(arg_dept, prov)
+
+ggplot(deps_inside_prov) + 
+  geom_sf(fill = 'lavender') + 
+  geom_sf_text(aes(label = gid))
+
+
+# la rioja ----------------------------------------------------------------
+
+ggplot(barrios) + geom_sf(fill = 'lavender') + geom_sf_text(aes(label = BARRIO), size = 2)
+

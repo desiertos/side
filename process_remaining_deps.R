@@ -99,3 +99,15 @@ ggplot(mun_completo %>% filter(provincia == 'santa_cruz')) + geom_sf()
 ggplot(mun_completo %>% filter(provincia == 'santiago_del_estero')) + geom_sf()
 ggplot(mun_completo %>% filter(provincia == 'ciudad_autonoma_de_buenos_aires')) + geom_sf(fill = "lavender") + 
   geom_sf(data = barrios, fill = "lightpink", alpha = .4)
+
+ggplot(mun_completo %>% filter(provincia == 'misiones')) + geom_sf(fill = 'lavender')
+
+
+mun__ <- mun_completo
+st_geometry(mun__) <- NULL
+mun__ %>% count(paste(nome_local, provincia)) %>% filter(n>1)
+
+mun__ %>% count(categoria) %>% mutate(pct = n / sum(n))
+mun__ %>% group_by(provincia) %>% count(categoria)
+
+mun__$cantidad_de_medios %>% as.numeric() %>% sum(na.rm = T)
