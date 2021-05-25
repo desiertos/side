@@ -532,3 +532,34 @@ pobXperiodistas: "41113.5"
 provincia: "Misiones"
 randId: 9
 tipo_entidade: "departamento"
+
+
+## Problems with Names, Municipalities
+
+eldorado -> El dorado
+Burrayacú -> Burruyacú
+Río Chico (Santa Cruz del Estero) -> ?
+
+na verdade, dados de Santiago e Santa Cruz estão trocados.
+
+Os que estão como Santiago viram Santa Cruz
+Os que estão como Santa Cruz, excluem-se.
+Adiciona os de Santiago
+Faz o join com o shape de deptos.
+Adiciona Villa General Mitre
+
+## Informes
+
+Catamarca
+
+
+
+## Melhorias
+
+criar referencias aos objetos em si, para não ficar repetindo os querySelector
+
+## Aprendizados
+
+às vezes vc acha que vai dar tempo de refatora, reorganizar... mas não dá. então é melhor já fazer bem-feito desde o começo.
+
+eu deveria ter construído cada módulo como um arquivo JS independente. e depois juntava tudo, para evitar acabar com duas versões de cada coisa. mesmo para o css.
