@@ -94,6 +94,39 @@ for (i in 1:nrow(centr)) {
   
 }
 
+
+# update categories count -------------------------------------------------
+
+cat_variables <- data.frame(
+  categoria = c("1", "2", "3", "4"),
+  variables = c("deserts_count", "semideserts_count", "semiforests_count", "forests_count")
+)
+
+mun_df <- mun_sf
+st_geometry(mun_df) <- NULL
+
+cat_count_prov <- mun_df %>%
+  group_by(provincia) %>%
+  count(categoria) %>%
+  left_join(cat_variables) %>%
+  select(-categoria) %>%
+  spread(variables, n) %>%
+  mutate_at(vars(ends_with('_count')), ~replace_na(., 0)) %>%
+  rename(nam = provincia)
+
+#join with prov data
+
+prov_sf <- prov_sf %>%
+  select(-ends_with('_count')) %>%
+  left_join(cat_count_prov)
+
+# provv <- prov_sf
+# st_geometry(provv) <- NULL
+
+# write files out ---------------------------------------------------------
+
+
+
 mun_geo <- geojsonsf::sf_geojson(mun_sf)
 #prov_geo <- geojsonsf::sf_geojson(prov_sf, digits = 6)
 
