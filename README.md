@@ -95,6 +95,16 @@ https://github.com/mzdraper/maptime-mapbox-parks/blob/master/Beginner/beginner.m
 https://blog.mapbox.com/3d-mapping-global-population-density-how-i-built-it-141785c91107
 Change type to fill-extrusion.
 
+## Accessibility
+
+https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA8.html
+
+Per the Accessible Name and Description Computation and the HTML to Platform Accessibility APIs Implementation Guide, the aria-label text will override the text supplied within the link. As such the text supplied will be used instead of the link text by AT. Due to this it is recommended to start the text used in aria-label with the text used within the link. This will allow consistent communication between users.
+
+https://a11y.coffee/quick-wins/
+https://www.a11yproject.com/checklist/
+
+
 ## CLI Cartography
 
 https://mapshaper.org/
