@@ -71,6 +71,16 @@ prov_sf <- prov_sf %>%
          pobXmedios = `relacion_poblacion_residente/medios`,
          pobXperiodistas = `relacion_poblacion_residente/periodistas`) %>%
   mutate(pob = as.numeric(pob))
+
+# this centroid will be useful to place province labels
+centr_prov <- sf::st_centroid(prov_sf)
+
+for (i in 1:nrow(centr_prov)) {
+  
+  prov_sf[i, 'xc'] <- centr_prov$geometry[[i]][1]
+  prov_sf[i, 'yc'] <- centr_prov$geometry[[i]][2]
+  
+}
   
 
 mun_sf <- mun_sf %>%
