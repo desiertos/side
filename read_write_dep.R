@@ -3,7 +3,7 @@ library(sf)
 library(geojsonsf)
 
 
-#arg_dept <- read_sf(dsn = "./geo_data/departamento", layer = "departamento")
+arg_dept <- read_sf(dsn = "./geo_data/departamento", layer = "departamento")
 arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
 
 
@@ -211,6 +211,47 @@ mun_sf3 <- mun_sf2 %>%
 # provv <- prov_sf
 # st_geometry(provv) <- NULL
 
+
+# geometry fixes ----------------------------------------------------------
+
+# tierra del fuego
+to_fix_tierra <- c('Río Grande', 'Tolhuin', 'Ushuaia')
+
+for (nam in to_fix_tierra) {
+  
+  linha <- which(
+    mun_sf3$nam == nam & mun_sf3$provincia == 'Tierra del Fuego, Antártida e Islas del Atlántico Sur')
+  
+  linha_dept <- which(arg_dept$nam == nam)
+  
+  mun_sf3[linha, 'geometry'] <- arg_dept[linha_dept, 'geometry']
+
+}
+
+# test
+# ggplot(mun_sf3 %>% filter(provincia == 'Tierra del Fuego, Antártida e Islas del Atlántico Sur')) + geom_sf()
+
+# Neuquén
+
+to_fix_neuquen <- c('Loconpué', 'Picunches')
+
+for (nam in to_fix_neuquen) {
+  
+  linha <- which(
+    mun_sf3$nam == nam & mun_sf3$provincia == 'Neuquén')
+  
+  
+  linha_dept <- which(arg_dept$nam == ifelse(nam == 'Loconpué', 'Loncopué', nam))
+  
+  print(paste(linha, linha_dept))
+  
+  mun_sf3[linha, 'geometry'] <- arg_dept[linha_dept, 'geometry']
+  
+}
+
+#test
+ggplot(mun_sf3 %>% filter(provincia == 'Neuquén')) + geom_sf()
+
 # write files out ---------------------------------------------------------
 
 
@@ -251,6 +292,8 @@ lista_locais <- bind_rows(mun_names, prov_names)
 
 mun_out <- mun_sf3
 sf::st_geometry(mun_out) <- NULL
+
+
 
 prov_out <- prov_sf5
 sf::st_geometry(prov_out) <- NULL
