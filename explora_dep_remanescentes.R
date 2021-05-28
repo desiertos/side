@@ -202,3 +202,22 @@ san_luis_namesXarg_dept_gid <- c("Ayacucho" = 81, "Belgrano" = 188, "Chacabuco" 
 ggplot(arg_prov %>% filter(nam == 'San Luis')) + geom_sf() + 
   geom_sf(data = depts_inside_san_luis) + 
   geom_sf_text(data = depts_inside_san_luis, aes(label = nam), size = 2)
+
+
+# la rioja
+
+la_rioja <- prov_sf5 %>% filter(nam == 'La Rioja')
+
+depts_inside_la_rioja <- st_intersection(arg_dept, la_rioja)
+
+names_la_rioja <- mun_sf3 %>% filter(provincia == 'La Rioja') %>% .$nam
+
+names(names_la_rioja) <- NULL
+dput(names_la_rioja)
+
+la_rioja_namesXgid <- c("Arauco" = 66, "Castro Barros" = 353, "Chamical" = 65, "Chilecito" = 355, "Famatina" = 361, 
+                        "General Belgrano" = 169, "General Lamadrid" = 80, "General San Martín" = 360, 
+                        "Independencia" = 63, "Rosario Vera Peñaloza" = 359, "San Blas de los Sauces" = 362, 
+                        "Sanagasta" = 354, "Vinchina" = 183, "General Ángel Vicente Peñaloza" = 356, 
+                        "General Felipe Varela" = 294, "General Juan Facundo Quiroga" = 358, "General Ortiz de Ocampo" = 64, 
+                        "La Rioja (Capital)" = 184)

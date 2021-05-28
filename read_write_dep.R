@@ -275,6 +275,34 @@ for (dept in depts_san_luis) {
   
 }
 
+# La Rioja
+
+la_rioja_namesXgid <- c("Arauco" = 66, "Castro Barros" = 353, "Chamical" = 65, "Chilecito" = 355, "Famatina" = 361, 
+                        "General Belgrano" = 169, "General Lamadrid" = 80, "General San Martín" = 360, 
+                        "Independencia" = 63, "Rosario Vera Peñaloza" = 359, "San Blas de los Sauces" = 362, 
+                        "Sanagasta" = 354, "Vinchina" = 183, "General Ángel Vicente Peñaloza" = 356, 
+                        "General Felipe Varela" = 294, "General Juan Facundo Quiroga" = 358, "General Ortiz de Ocampo" = 64, 
+                        "La Rioja (Capital)" = 184)
+
+depts_la_rioja <- mun_sf3 %>% filter(provincia == 'La Rioja') %>% .$nam
+
+for (dept in depts_la_rioja) {
+  
+  linha_mun <- which(
+    mun_sf3$nam == dept & mun_sf3$provincia == 'La Rioja')
+  
+  gid = la_rioja_namesXgid[dept]
+  
+  linha_dept <- which(arg_dept$gid == gid)
+  
+  print(paste(linha_mun, linha_dept))
+  
+  mun_sf3[linha_mun, 'geometry'] <- arg_dept[linha_dept, 'geometry']
+  
+}
+
+# San Luis province geometry
+
 # write files out ---------------------------------------------------------
 
 
