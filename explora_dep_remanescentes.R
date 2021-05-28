@@ -174,3 +174,31 @@ ggplot(barrios) + geom_sf(fill = 'lavender') + geom_sf_text(aes(label = BARRIO),
 
 
 ggplot(mun_sf3 %>% filter(provincia == 'San Luis')) + geom_sf() + geom_sf_text(aes(label = nam), size = 2)
+
+ggplot(arg_dept %>% filter(str_detect(nam, 'Juan M'))) + geom_sf() + geom_sf_text(aes(label = nam), size = 2)
+
+ggplot(arg_dept %>% filter(nam %in% c('Río Grande', 'Tolhuin', 'Ushuaia'))) + geom_sf()
+
+ggplot(arg_dept %>% filter(nam %in% c('Loncopué', 'Picunches'))) + geom_sf()
+
+
+# san luis 
+
+san_luis <- prov_sf5 %>% filter(nam == 'San Luis')
+
+depts_inside_san_luis <- st_intersection(arg_dept, san_luis)
+
+names_san_luis <- mun_sf3 %>% filter(provincia == 'San Luis') %>% .$nam
+
+names(names_san_luis) <- NULL
+dput(names_san_luis)
+
+# agora compara os nomes com o depts_inside_san_luis para pegar na mão os gid
+
+san_luis_namesXarg_dept_gid <- c("Ayacucho" = 81, "Belgrano" = 188, "Chacabuco" = 502, "Coronel Pringles" = 501, "General Pedernera" = 388, 
+  "Gobernador Dupuy" = 41, "Junin" = 390, "Juan M. De Pueyrredon" = 387, "Lib. General San Martin" = 500
+)
+
+ggplot(arg_prov %>% filter(nam == 'San Luis')) + geom_sf() + 
+  geom_sf(data = depts_inside_san_luis) + 
+  geom_sf_text(data = depts_inside_san_luis, aes(label = nam), size = 2)

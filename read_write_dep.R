@@ -250,7 +250,30 @@ for (nam in to_fix_neuquen) {
 }
 
 #test
-ggplot(mun_sf3 %>% filter(provincia == 'Neuquén')) + geom_sf()
+#ggplot(mun_sf3 %>% filter(provincia == 'Neuquén')) + geom_sf()
+
+# San Luis
+
+san_luis_namesXarg_dept_gid <- c("Ayacucho" = 81, "Belgrano" = 188, "Chacabuco" = 502, "Coronel Pringles" = 501, "General Pedernera" = 388, 
+                                 "Gobernador Dupuy" = 41, "Junin" = 390, "Juan M. De Pueyrredon" = 387, "Lib. General San Martin" = 500
+)
+
+depts_san_luis <- mun_sf3 %>% filter(provincia == 'San Luis') %>% .$nam
+
+for (dept in depts_san_luis) {
+  
+  linha_mun <- which(
+    mun_sf3$nam == dept & mun_sf3$provincia == 'San Luis')
+  
+  gid = san_luis_namesXarg_dept_gid[dept]
+  
+  linha_dept <- which(arg_dept$gid == gid)
+  
+  print(paste(linha_mun, linha_dept))
+  
+  mun_sf3[linha_mun, 'geometry'] <- arg_dept[linha_dept, 'geometry']
+  
+}
 
 # write files out ---------------------------------------------------------
 
