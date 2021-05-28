@@ -325,6 +325,31 @@ for (dept in depts_misiones) {
   
 }
 
+# San Juan
+
+names_san_juanXgid <- c("25 de Mayo " = 517, "9 de Julio " = 512, "Albardón" = 513, "Angaco " = 514, "Calingasta" = 519, 
+                        "Capital" = 504, "Caucete" = 516, "Chimbas " = 511, "Iglesia " = 520, "Jáchal" = 521, "Pocito " = 508, 
+                        "Rawson " = 507, "Rivadavia " = 505, "San Martín" = 515, "Santa Lucía " = 506, "Sarmiento " = 518, 
+                        "Ullum" = 510, "Valle Fértil" = 522, "Zonda" = 509)
+
+depts_san_juan <- mun_sf3 %>% filter(provincia == 'San Juan') %>% .$nam
+
+for (dept in depts_san_juan) {
+  
+  linha_mun <- which(
+    mun_sf3$nam == dept & mun_sf3$provincia == 'San Juan')
+  
+  gid = names_san_juanXgid[dept]
+  
+  linha_dept <- which(arg_dept$gid == gid)
+  
+  print(paste(linha_mun, linha_dept))
+  
+  mun_sf3[linha_mun, 'geometry'] <- arg_dept[linha_dept, 'geometry']
+  
+}
+
+
 # San Luis province geometry
 
 # write files out ---------------------------------------------------------

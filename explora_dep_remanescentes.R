@@ -238,3 +238,19 @@ misiones_namesXgid <- c("Apóstoles" = 485, "Cainguás " = 474, "Candelaria " = 
                         "Guaraní" = 477, "Iguazú " = 478, "Leandro N. Alem" = 482, "Libertador General San Martín" = 475, 
                         "Montecarlo" = 157, "Oberá" = 480, "San Ignacio" = 481, "San Javier" = 483, "San Pedro" = 159, 
                         "25 de Mayo" = 479, "Capital (Posadas)" = 472, "El Dorado" = 158)
+
+# san juan
+
+san_juan <- prov_sf5 %>% filter(nam == 'San Juan')
+
+depts_inside_san_juan <- st_intersection(arg_dept, san_juan)
+
+names_san_juan <- mun_sf3 %>% filter(provincia == 'San Juan') %>% .$nam
+
+names(names_san_juan) <- NULL
+dput(names_san_juan)
+
+names_san_juanXgid <- c("25 de Mayo " = 517, "9 de Julio " = 512, "Albardón" = 513, "Angaco " = 514, "Calingasta" = 519, 
+                        "Capital" = 504, "Caucete" = 516, "Chimbas " = 511, "Iglesia " = 520, "Jáchal" = 521, "Pocito " = 508, 
+                        "Rawson " = 507, "Rivadavia " = 505, "San Martín" = 515, "Santa Lucía " = 506, "Sarmiento " = 518, 
+                        "Ullum" = 510, "Valle Fértil" = 522, "Zonda" = 509)
