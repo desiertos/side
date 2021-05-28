@@ -355,7 +355,6 @@ for (dept in depts_san_juan) {
 # write files out ---------------------------------------------------------
 
 
-
 mun_geo <- geojsonsf::sf_geojson(mun_sf3)
 #prov_geo <- geojsonsf::sf_geojson(prov_sf, digits = 6)
 
@@ -390,6 +389,15 @@ lista_locais <- bind_rows(mun_names, prov_names)
 
 # output ------------------------------------------------------------------
 
+# medios
+medios_prototipicos <- read.csv('./data/medios_prototipicos.csv')
+lista_prov <- prov_sf5 %>% arrange(nam) %>% .$nam
+medios_prototipicos$nam <- lista_prov
+medios_prototipicos <- medios_prototipicos %>% select(
+  provincia = 3,
+  desc = 2
+)
+
 mun_out <- mun_sf3
 sf::st_geometry(mun_out) <- NULL
 
@@ -401,7 +409,8 @@ sf::st_geometry(prov_out) <- NULL
 output_dash <- list(
   'localidad' = mun_out,
   'provincia' = prov_out,
-  'lista_locais' = lista_locais
+  'lista_locais' = lista_locais,
+  'medios_prototipicos' = medios_prototipicos
 )
 
 # interessante, se usar o <- ali em cima, ele ignora os nomes e gera uma array com as 3 arrays, em vez de um objeto com as 3 arrays.
