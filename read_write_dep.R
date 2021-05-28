@@ -94,6 +94,10 @@ mun_sf2 <- mun_sf %>%
          cant_periodistas = cantidad_de_periodistas,
          pobXmedios = `relacion_poblacion_residente/medios`,
          pobXperiodistas = `relacion_poblacion_residente/periodistas`)
+  # fixes
+
+mun_sf2[mun_sf2$provincia == 'Formosa' & mun_sf2$nam == 'Patiño', 'categoria'] <- "1"
+mun_sf2[mun_sf2$provincia == 'Santa Fe' & mun_sf2$nam == 'La Capital', 'nam'] <- "Capital"
 
 centr <- sf::st_centroid(mun_sf2)
 
@@ -101,6 +105,26 @@ for (i in 1:nrow(centr)) {
   
   mun_sf2[i, 'xc'] <- centr$geometry[[i]][1]
   mun_sf2[i, 'yc'] <- centr$geometry[[i]][2]
+  
+}
+
+# entre rios data changed later
+entre_rios_corr <- readxl::read_excel('./data/entre_rios_corregido.xlsx')
+col_names_entre_rios <- colnames(entre_rios_corr)[-1]
+
+for ( i in 1:nrow(entre_rios_corr) ) {
+  
+  linha <- which(
+    mun_sf2$nam == stringr::str_trim(entre_rios_corr[i, 'nam'])
+    & mun_sf2$provincia == 'Entre Ríos')
+  
+  for ( col in col_names_entre_rios ) {
+    
+    print(paste(linha, col))
+    
+    mun_sf2[linha, col] <- entre_rios_corr[i, col]
+    
+  }
   
 }
 
@@ -142,6 +166,8 @@ prov_sf4 <- prov_sf3 %>%
 
 # fixes
 
+# o ideal aqui era fazer um join com os subtotais.
+
 fix_pob <- c(
   'Chubut' = 509108,
   'Jujuy' = 673307,
@@ -150,11 +176,13 @@ fix_pob <- c(
   'Tucumán' = 1448188)
 
 fix_cant_medios <- c(
-  'Chubut' = 63
+  'Chubut' = 63,
+  'Entre Ríos' = 104
 )
 
 fix_cant_periodistas <- c(
-  'Chubut' = 407
+  'Chubut' = 407,
+  'Entre Ríos' = 463
 )
 
 prov_sf5 <- prov_sf4 %>%
@@ -169,6 +197,9 @@ prov_sf5 <- prov_sf4 %>%
                               fix_cant_periodistas[nam],
                               cant_periodistas)
   )
+
+
+# fixes to localities
 
 mun_sf3 <- mun_sf2 %>%
   mutate(nam = ifelse(provincia == 'San Luis',
