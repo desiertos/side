@@ -221,3 +221,20 @@ la_rioja_namesXgid <- c("Arauco" = 66, "Castro Barros" = 353, "Chamical" = 65, "
                         "Sanagasta" = 354, "Vinchina" = 183, "General Ángel Vicente Peñaloza" = 356, 
                         "General Felipe Varela" = 294, "General Juan Facundo Quiroga" = 358, "General Ortiz de Ocampo" = 64, 
                         "La Rioja (Capital)" = 184)
+
+
+# missiones
+
+misiones <- prov_sf5 %>% filter(nam == 'Misiones')
+
+depts_inside_misiones <- st_intersection(arg_dept, misiones)
+
+names_misiones <- mun_sf3 %>% filter(provincia == 'Misiones') %>% .$nam
+
+names(names_misiones) <- NULL
+dput(names_misiones)
+
+misiones_namesXgid <- c("Apóstoles" = 485, "Cainguás " = 474, "Candelaria " = 473, "Concepción" = 484, "General Manuel Belgrano " = 476, 
+                        "Guaraní" = 477, "Iguazú " = 478, "Leandro N. Alem" = 482, "Libertador General San Martín" = 475, 
+                        "Montecarlo" = 157, "Oberá" = 480, "San Ignacio" = 481, "San Javier" = 483, "San Pedro" = 159, 
+                        "25 de Mayo" = 479, "Capital (Posadas)" = 472, "El Dorado" = 158)

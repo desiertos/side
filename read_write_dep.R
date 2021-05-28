@@ -301,6 +301,30 @@ for (dept in depts_la_rioja) {
   
 }
 
+# misiones
+
+misiones_namesXgid <- c("Apóstoles" = 485, "Cainguás " = 474, "Candelaria " = 473, "Concepción" = 484, "General Manuel Belgrano " = 476, 
+                        "Guaraní" = 477, "Iguazú " = 478, "Leandro N. Alem" = 482, "Libertador General San Martín" = 475, 
+                        "Montecarlo" = 157, "Oberá" = 480, "San Ignacio" = 481, "San Javier" = 483, "San Pedro" = 159, 
+                        "25 de Mayo" = 479, "Capital (Posadas)" = 472, "El Dorado" = 158)
+
+depts_misiones <- mun_sf3 %>% filter(provincia == 'Misiones') %>% .$nam
+
+for (dept in depts_misiones) {
+  
+  linha_mun <- which(
+    mun_sf3$nam == dept & mun_sf3$provincia == 'Misiones')
+  
+  gid = misiones_namesXgid[dept]
+  
+  linha_dept <- which(arg_dept$gid == gid)
+  
+  print(paste(linha_mun, linha_dept))
+  
+  mun_sf3[linha_mun, 'geometry'] <- arg_dept[linha_dept, 'geometry']
+  
+}
+
 # San Luis province geometry
 
 # write files out ---------------------------------------------------------
