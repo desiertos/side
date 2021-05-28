@@ -170,3 +170,7 @@ ggplot(deps_inside_prov) +
 
 ggplot(barrios) + geom_sf(fill = 'lavender') + geom_sf_text(aes(label = BARRIO), size = 2)
 
+
+
+
+ggplot(mun_sf3 %>% filter(provincia == 'San Luis')) + geom_sf() + geom_sf_text(aes(label = nam), size = 2)
