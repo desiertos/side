@@ -381,7 +381,7 @@ for (dept in depts_catamarca) {
 # write files out ---------------------------------------------------------
 
 
-mun_geo <- geojsonsf::sf_geojson(mun_sf3)
+mun_geo <- geojsonsf::sf_geojson(mun_sf3, digits = 6)
 #prov_geo <- geojsonsf::sf_geojson(prov_sf, digits = 6)
 
 write_file(mun_geo, '../desiertos.github.io/data/maps/dep.json')
