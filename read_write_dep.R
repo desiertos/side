@@ -6,7 +6,6 @@ library(geojsonsf)
 arg_dept <- read_sf(dsn = "./geo_data/departamento", layer = "departamento")
 arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
 
-
 the_crs <- sf::st_crs(arg_prov)
 
 #mun <- geojson_sf("departamentos.json")
@@ -18,6 +17,8 @@ prov <- sf::st_set_crs(prov, 5343)
 
 #mun_sf <- sf::st_transform(mun, the_crs)
 prov_sf <-  sf::st_transform(prov, the_crs)
+arg_dept <- sf::st_transform(arg_dept, the_crs)
+#arg_dept <- st_simplify(arg_dept, preserveTopology = TRUE, dTolerance = .1)
 
 mun_sf <- readRDS('mun_completo.rds')
 
@@ -406,7 +407,7 @@ mun_names <- data.frame(
 prov_names <- data.frame(
   local = prov_sf5$nam,
   provincia = prov_sf5$nam,
-  text = paste0(prov_sf5$nam, " (", prov_sf5$provincia, ")"),
+  text = prov_sf5$nam,
   tipo = 'provincia')
 
 
