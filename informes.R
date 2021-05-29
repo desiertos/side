@@ -1,7 +1,7 @@
 library(tidyverse)
 library(readxl)
 
-informes <- read_xlsx('./data/Informes.xlsx', sheet = 'transposto')
+informes <- read_xlsx('./data/Informes.xlsx', sheet = 'transposto2')
 
 html <- ""
 
@@ -53,5 +53,5 @@ for (i in 1:nrow(informes)) {
   
 }
 
-write_file(html, 'informes.html')             
+write_file(html, 'informes_cont.html')             
              
