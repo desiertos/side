@@ -254,3 +254,20 @@ names_san_juanXgid <- c("25 de Mayo " = 517, "9 de Julio " = 512, "Albardón" = 
                         "Capital" = 504, "Caucete" = 516, "Chimbas " = 511, "Iglesia " = 520, "Jáchal" = 521, "Pocito " = 508, 
                         "Rawson " = 507, "Rivadavia " = 505, "San Martín" = 515, "Santa Lucía " = 506, "Sarmiento " = 518, 
                         "Ullum" = 510, "Valle Fértil" = 522, "Zonda" = 509)
+
+
+# catamarca
+
+catamarca <- prov_sf5 %>% filter(nam == 'Catamarca')
+
+depts_inside_catamarca <- st_intersection(arg_dept, catamarca)
+
+names_catamarca <- mun_sf3 %>% filter(provincia == 'Catamarca') %>% .$nam
+
+names(names_catamarca) <- NULL
+dput(names_catamarca)
+
+names_catamarcaXgid <- c("Ambato" = 366, "Ancasti" = 198, "Andalgalá" = 365, "Antofagasta de la Sierra" = 222, 
+                         "Belén" = 191, "Capayán" = 267, "Capital" = 197, "El Alto" = 369, "Fray Mamerto Esquiú" = 130, 
+                         "La Paz" = 74, "Paclín" = 367, "Pomán" = 206, "Santa María" = 71, "Santa Rosa" = 73, 
+                         "Tinogasta" = 377, "Valle Viejo" = 489)

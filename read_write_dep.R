@@ -349,6 +349,32 @@ for (dept in depts_san_juan) {
   
 }
 
+# Catamarca
+
+names_catamarcaXgid <- c("Ambato" = 366, "Ancasti" = 198, "Andalgalá" = 365, "Antofagasta de la Sierra" = 222, 
+                         "Belén" = 191, "Capayán" = 267, "Capital" = 197, "El Alto" = 369, "Fray Mamerto Esquiú" = 130, 
+                         "La Paz" = 74, "Paclín" = 367, "Pomán" = 206, "Santa María" = 71, "Santa Rosa" = 73, 
+                         "Tinogasta" = 377, "Valle Viejo" = 489)
+
+depts_catamarca <- mun_sf3 %>% filter(provincia == 'Catamarca') %>% .$nam
+
+for (dept in depts_catamarca) {
+  
+  linha_mun <- which(
+    mun_sf3$nam == dept & mun_sf3$provincia == 'Catamarca')
+  
+  gid = names_catamarcaXgid[dept]
+  
+  linha_dept <- which(arg_dept$gid == gid)
+  
+  print(paste(linha_mun, linha_dept))
+  
+  mun_sf3[linha_mun, 'geometry'] <- arg_dept[linha_dept, 'geometry']
+  
+}
+
+#ggplot(mun_sf3 %>% filter(provincia == 'Catamarca')) + geom_sf()
+
 
 # San Luis province geometry
 
