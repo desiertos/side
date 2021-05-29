@@ -577,3 +577,7 @@ criar referencias aos objetos em si, para não ficar repetindo os querySelector
 às vezes vc acha que vai dar tempo de refatora, reorganizar... mas não dá. então é melhor já fazer bem-feito desde o começo.
 
 eu deveria ter construído cada módulo como um arquivo JS independente. e depois juntava tudo, para evitar acabar com duas versões de cada coisa. mesmo para o css.
+
+
+
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
