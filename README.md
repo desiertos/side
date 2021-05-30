@@ -108,6 +108,8 @@ https://a11y.coffee/quick-wins/
 https://www.a11yproject.com/checklist/
 https://www.deque.com/blog/accessible-aria-buttons/
 
+https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
+
 
 ## CLI Cartography
 
