@@ -443,3 +443,80 @@ output_dash <- list(
 # interessante, se usar o <- ali em cima, ele ignora os nomes e gera uma array com as 3 arrays, em vez de um objeto com as 3 arrays.
 
 jsonlite::write_json(output_dash, '../desiertos.github.io/data/output_dash.json')
+
+
+
+# other outputs -----------------------------------------------------------
+
+ranking <- cat_count_prov %>% 
+  janitor::adorn_percentages() %>%
+  arrange(desc(deserts_count)) %>%
+  mutate(semidesert_start = deserts_count,
+         semiforest_start = deserts_count + semideserts_count,
+         forests_start = deserts_count + semideserts_count + semiforests_count)
+
+jsonlite::write_json(ranking, '../desiertos.github.io/data/ranking.json')
+
+sum(as.numeric(prov_out$cant_medios), na.rm = T) == sum(as.numeric(mun_out$cant_medios), na.rm = T)
+sum(as.numeric(prov_out$cant_periodistas), na.rm = T) == sum(as.numeric(mun_out$cant_periodistas), na.rm = T)
+
+provincias_download <- medios_prototipicos %>%
+  left_join(prov_out, by = c("provincia" = "nam")) %>%
+  select(
+    provincia,
+    pob = populacion_en_areas_recenseadas,
+    cant_medios,
+    cant_periodistas,
+    bosques = forests_count,
+    semibosques = semiforests_count,
+    semidesiertos = semideserts_count,
+    desiertos = deserts_count,
+    medios_prototipico = desc
+    ) %>%
+  mutate(
+    departamentos = bosques + semibosques + semidesiertos + desiertos)
+  
+mun_out %>% count(provincia) %>% .$n ==
+provincias_download$departamentos
+
+write.csv2(provincias_download, "provincias.csv", fileEncoding = 'UTF-8')
+
+deptos_out <- mun_out %>%
+  select(
+    departamento = 1,
+    provincia,
+    categoria,
+    pob,
+    cant_medios,
+    cant_periodistas,
+    pobXmedios,
+    pobXperiodistas)
+
+max(as.numeric(mun_out$pobXmedios) - as.numeric(mun_out$pob) / as.numeric(mun_out$cant_medios), na.rm = T)
+
+write.csv2(deptos_out, "departamentos.csv", fileEncoding = 'UTF-8')
+
+categorias_qde <- mun_out %>%
+  count(categoria)
+
+nomes_categorias <- c("1" = "Desiertos", "2" = "Semidesiertos", "3" = "Semibosques", "4" = "Bosques")
+
+categorias <- mun_out %>%
+  group_by(categoria) %>%
+  summarise_at(
+    .vars = vars(pob, cant_medios, cant_periodistas),
+    .funs = ~sum(as.numeric(.), na.rm = T)
+  ) %>%
+  ungroup() %>%
+  left_join(categorias_qde) %>%
+  rename(cant_departamentos = n) %>%
+  mutate(
+    pobXmedios = as.numeric(pob) / as.numeric(cant_medios),
+    pobXperiodistas = as.numeric(pob) / as.numeric(cant_periodistas)) %>%
+  mutate(
+    categoria_desc = nomes_categorias[categoria], .after = categoria
+  )
+
+write.csv2(categorias, "categorias.csv", fileEncoding = 'UTF-8')
+
+save(deptos_out, provincias_download, categorias, file = "downloads.RData")
