@@ -583,3 +583,13 @@ eu deveria ter construído cada módulo como um arquivo JS independente. e depoi
 
 
 <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+options.preserveDrawingBuffer
+boolean
+default: false
+
+If true , the map's canvas can be exported to a PNG using map.getCanvas().toDataURL() . This is false by default as a performance optimization.
+
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#using_the_download_attribute_to_save_a_%3Ccanvas%3E_as_a_png
