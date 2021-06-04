@@ -1,7 +1,7 @@
 library(tidyverse)
 library(sf)
 library(geojsonsf)
-
+library(jsonlite)
 
 arg_dept <- read_sf(dsn = "./geo_data/departamento", layer = "departamento")
 arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
@@ -379,6 +379,21 @@ for (dept in depts_catamarca) {
 
 # San Luis province geometry
 
+# fix Loncopué
+linha_loncopue <- which(mun_sf3$`departamento/municipio/barrio` == "Loconpué")
+mun_sf3[linha_loncopue, "departamento/municipio/barrio"] <- 'Loncopué'
+mun_sf3[linha_loncopue, "nam"] <- 'Loncopué'
+mun_sf3[linha_loncopue, "nome_provincia"] <- 'loncopue_neuquen'
+mun_sf3[linha_loncopue, "local"] <- 'loncopue_Neuquén'
+mun_sf3[linha_loncopue, "nome_local"] <- 'loncopue'
+
+linha_burruyacu <- which(mun_sf3$`departamento/municipio/barrio` == "Burrayacú")
+mun_sf3[linha_burruyacu, "departamento/municipio/barrio"] <- 'Burruyacú'
+mun_sf3[linha_burruyacu, "nam"] <- 'Burruyacú'
+mun_sf3[linha_burruyacu, "nome_provincia"] <- 'burruyacu_tucuman'
+mun_sf3[linha_burruyacu, "local"] <- 'burruyacu_Tucumán'
+mun_sf3[linha_burruyacu, "nome_local"] <- 'burruyacu'
+
 # write files out ---------------------------------------------------------
 
 
@@ -402,16 +417,36 @@ mun_names <- data.frame(
   local = mun_sf3$local, 
   provincia = mun_sf3$provincia,
   text = paste0(mun_sf3$nam, " (", mun_sf3$provincia, ")"),
-  tipo = 'localidad')
+  name = mun_sf3$nam,
+  tipo = 'localidad') %>%
+  arrange(text)
 
 prov_names <- data.frame(
   local = prov_sf5$nam,
   provincia = prov_sf5$nam,
+  name = prov_sf5$nam,
   text = prov_sf5$nam,
   tipo = 'provincia')
 
+municipios_transformados <- readxl::read_excel('./data/dados_desertos_municipios_departamentos_lista.xlsx')
 
-lista_locais <- bind_rows(mun_names, prov_names)
+teste <- unique(c(municipios_transformados$Provincia, mun_names$provincia))
+
+lista_mun <- municipios_transformados %>%
+  rename(provincia = Provincia, name = Departamento) %>%
+  filter(provincia != name) %>%
+  #filter(provincia == "Rí́o Negro")
+  left_join(mun_names) %>%
+  mutate(text = paste(Municipio, text, sep = ", ")) %>%
+  select(-Municipio)
+
+#lista_mun %>% filter(is.na(local))
+
+lista_locais <- bind_rows(lista_mun, mun_names, prov_names) 
+#%>%
+#   mutate(
+#     text = ifelse(text == "Ciudad Autónoma de Buenos Aires", "Ciudad Autónoma de Buenos Aires - CABA", text)
+#   )
 
 
 # output ------------------------------------------------------------------
