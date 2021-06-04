@@ -593,3 +593,25 @@ If true , the map's canvas can be exported to a PNG using map.getCanvas().toData
 
 
 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#using_the_download_attribute_to_save_a_%3Ccanvas%3E_as_a_png
+
+
+mostrar a importância de se conhecer a estrutura dos dados
+
+dash.data.localidad.features[0].properties
+
+a ideia da camada que vai ser ativada por filtro...
+
+
+"sticky hover on mobile"
+https://stackoverflow.com/questions/17233804/how-to-prevent-sticky-hover-effects-for-buttons-on-touch-devices
+
+3/6/2021 -- em PG. orgulhoso da versão mobile e do filtro de categoria.
+
+
+para pegar um bosque na visao do mapa
+let locs = app.map_obj.queryRenderedFeatures({layers : ['localidad']})
+locs.filter(d => d.properties.categoria == "4")
+
+
+alerta de bruxaria!!!!
+string.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
