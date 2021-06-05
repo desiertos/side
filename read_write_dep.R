@@ -460,8 +460,40 @@ mun_sf3[linha_burruyacu, "nome_local"] <- 'burruyacu'
 
 
 
+# provinces geometries ----------------------------------------------------
+
+for (i in 1:nrow(arg_prov)) {
+  
+  provincia_atual <- arg_prov$nam[i]
+  print(provincia_atual)
+  
+  linha_em_prov_sf5 <- which(prov_sf5$nam == provincia_atual)
+  
+  prov_sf5[linha_em_prov_sf5, 'geometry'] <- arg_prov[i, 'geometry']
+  
+}
+
+
+# mask argentina ----------------------------------------------------------
+
+
+argentina <- prov_sf5 %>% group_by() %>% summarise()
+
+#ggplot(argentina) + geom_sf()
+
+world <- geojson_sf("./geo_data/world.json")
+
+world <- st_transform(world, the_crs)
+
+arg_mask <- sf::st_difference(world, argentina)
+
+
+#ggplot(prov_geometries_from_depts) + geom_sf()
+
 # write files out ---------------------------------------------------------
 
+arg_mask_geo <- geojsonsf::sf_geojson(arg_mask, digits = 6)
+write_file(arg_mask_geo, "../desiertos.github.io/data/maps/arg_mask.geojson")
 
 mun_geo <- geojsonsf::sf_geojson(mun_sf3, digits = 6)
 #prov_geo <- geojsonsf::sf_geojson(prov_sf, digits = 6)
