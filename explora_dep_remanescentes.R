@@ -282,3 +282,21 @@ ggplot(probs_pba) + geom_sf(fill = "khaki") + geom_sf_text(size = 2, aes(label =
   geom_sf(data = pba, fill = "transparent", color = "hotpink")
 
 names_pba_gid <- c("Avellaneda" = 494, "Lanús" = 492)
+
+
+
+# tucuman
+
+tucuman <- prov_sf5 %>% filter(nam == 'Tucumán')
+
+depts_inside_tucuman <- st_intersection(arg_dept, tucuman)
+
+names_tucuman <- mun_sf3 %>% filter(provincia == 'Tucumán') %>% .$nam
+
+names(names_tucuman) <- NULL
+dput(names_tucuman)
+
+names_tucumanXgid <- c("Capital" = 421, "Chicligasta" = 417, "Cruz Alta" = 422, "Famaillá" = 420, "Graneros" = 413, 
+                       "La Cocha" = 412, "Leales" = 419, "Lules" = 423, "Monteros" = 418, "Río Chico" = 415, "Simoca" = 416, 
+                       "Tafí del Valle" = 428, "Tafí Viejo" = 425, "Trancas" = 427, "Yerba Buena" = 424, "Burruyacú" = 426, 
+                       "Juan Bautista Alberdi" = 414)

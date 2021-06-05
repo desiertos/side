@@ -385,6 +385,33 @@ for (dept in depts_catamarca) {
 
 #ggplot(mun_sf3 %>% filter(provincia == 'Catamarca')) + geom_sf()
 
+# tucuman
+
+names_tucumanXgid <- c("Capital" = 421, "Chicligasta" = 417, "Cruz Alta" = 422, "Famaillá" = 420, "Graneros" = 413, 
+                       "La Cocha" = 412, "Leales" = 419, "Lules" = 423, "Monteros" = 418, "Río Chico" = 415, "Simoca" = 416, 
+                       "Tafí del Valle" = 428, "Tafí Viejo" = 425, "Trancas" = 427, "Yerba Buena" = 424, "Burruyacú" = 426, 
+                       "Juan Bautista Alberdi" = 414)
+
+depts_tucuman <- mun_sf3 %>% filter(provincia == 'Tucumán') %>% .$nam
+
+for (dept in depts_tucuman) {
+  
+  linha_mun <- which(
+    mun_sf3$nam == dept & mun_sf3$provincia == 'Tucumán')
+  
+  gid = names_tucumanXgid[dept]
+  
+  linha_dept <- which(arg_dept$gid == gid)
+  
+  print(paste(linha_mun, linha_dept))
+  
+  mun_sf3[linha_mun, 'geometry'] <- arg_dept[linha_dept, 'geometry']
+  
+}
+
+#ggplot(mun_sf3 %>% filter(provincia == 'Tucumán')) + geom_sf()
+
+
 # CABA
 
 dput(mun_df %>% filter(provincia == "Ciudad Autónoma de Buenos Aires") %>% .$nam)
@@ -451,12 +478,12 @@ mun_sf3[linha_loncopue, "nome_provincia"] <- 'loncopue_neuquen'
 mun_sf3[linha_loncopue, "local"] <- 'loncopue_Neuquén'
 mun_sf3[linha_loncopue, "nome_local"] <- 'loncopue'
 
-linha_burruyacu <- which(mun_sf3$`departamento/municipio/barrio` == "Burrayacú")
-mun_sf3[linha_burruyacu, "departamento/municipio/barrio"] <- 'Burruyacú'
-mun_sf3[linha_burruyacu, "nam"] <- 'Burruyacú'
-mun_sf3[linha_burruyacu, "nome_provincia"] <- 'burruyacu_tucuman'
-mun_sf3[linha_burruyacu, "local"] <- 'burruyacu_Tucumán'
-mun_sf3[linha_burruyacu, "nome_local"] <- 'burruyacu'
+# linha_burruyacu <- which(mun_sf3$`departamento/municipio/barrio` == "Burrayacú")
+# mun_sf3[linha_burruyacu, "departamento/municipio/barrio"] <- 'Burruyacú'
+# mun_sf3[linha_burruyacu, "nam"] <- 'Burruyacú'
+# mun_sf3[linha_burruyacu, "nome_provincia"] <- 'burruyacu_tucuman'
+# mun_sf3[linha_burruyacu, "local"] <- 'burruyacu_Tucumán'
+# mun_sf3[linha_burruyacu, "nome_local"] <- 'burruyacu'
 
 
 
