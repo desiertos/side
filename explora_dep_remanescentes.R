@@ -271,3 +271,14 @@ names_catamarcaXgid <- c("Ambato" = 366, "Ancasti" = 198, "Andalgalá" = 365, "A
                          "Belén" = 191, "Capayán" = 267, "Capital" = 197, "El Alto" = 369, "Fray Mamerto Esquiú" = 130, 
                          "La Paz" = 74, "Paclín" = 367, "Pomán" = 206, "Santa María" = 71, "Santa Rosa" = 73, 
                          "Tinogasta" = 377, "Valle Viejo" = 489)
+
+
+#  PBA --------------------------------------------------------------------
+
+pba <- prov_sf5 %>% filter(nam == 'Buenos Aires')
+probs_pba <- arg_dept %>% filter(nam %in% c('Avellaneda', "Lanús"))
+
+ggplot(probs_pba) + geom_sf(fill = "khaki") + geom_sf_text(size = 2, aes(label = gid)) +
+  geom_sf(data = pba, fill = "transparent", color = "hotpink")
+
+names_pba_gid <- c("Avellaneda" = 494, "Lanús" = 492)

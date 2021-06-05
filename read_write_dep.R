@@ -419,6 +419,28 @@ ggplot(mun_sf3 %>% filter(provincia == 'Ciudad Autónoma de Buenos Aires')) +
 
 ggplot() + geom_sf(data = caba_sf, fill = 'yellow')
 
+# PBA
+
+names_pba_gid <- c("Avellaneda" = 494, "Lanús" = 492)
+
+
+for (dept in names(names_pba_gid)) {
+  
+  print(dept)
+  
+  linha_mun <- which(
+    mun_sf3$nam == dept & mun_sf3$provincia == 'Buenos Aires')
+  
+  gid = names_pba_gid[dept]
+  
+  linha_dept <- which(arg_dept$gid == gid)
+  
+  print(paste(linha_mun, linha_dept))
+  
+  mun_sf3[linha_mun, 'geometry'] <- arg_dept[linha_dept, 'geometry']
+  
+}
+
 # San Luis province geometry
 
 # fix Loncopué
