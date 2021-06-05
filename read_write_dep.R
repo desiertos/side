@@ -440,6 +440,34 @@ for (dept in depts_salta) {
 ggplot(mun_sf3 %>% filter(provincia == 'Salta')) + geom_sf()
 
 
+# cordoba
+
+
+names_cordobaXgid <- c("Calamuchita" = 384, "Capital" = 221, "Colón " = 357, "Cruz del Eje" = 85, "General Roca" = 114, 
+                       "General San Martín" = 374, "Ischilín" = 372, "Juárez Celman" = 342, "Marcos Juárez" = 378, 
+                       "Minas" = 88, "Pocho" = 529, "Presidente Roque Sáenz Peña" = 112, "Punilla " = 86, 
+                       "Río Cuarto" = 95, "Río Primero" = 376, "Río Seco" = 185, "Río Segundo" = 90, "San Alberto" = 89, 
+                       "San Javier" = 375, "San Justo" = 91, "Santa María" = 87, "Sobremonte" = 207, "Tercero Arriba" = 93, 
+                       "Totoral " = 373, "Tulumba" = 84, "Unión" = 92)
+
+depts_cordoba <- mun_sf3 %>% filter(provincia == 'Córdoba') %>% .$nam
+
+for (dept in depts_cordoba) {
+  
+  linha_mun <- which(
+    mun_sf3$nam == dept & mun_sf3$provincia == 'Córdoba')
+  
+  gid = names_cordobaXgid[dept]
+  
+  linha_dept <- which(arg_dept$gid == gid)
+  
+  print(paste(linha_mun, linha_dept))
+  
+  mun_sf3[linha_mun, 'geometry'] <- arg_dept[linha_dept, 'geometry']
+  
+}
+
+#ggplot(mun_sf3 %>% filter(provincia == 'Córdoba')) + geom_sf()
 
 
 # CABA

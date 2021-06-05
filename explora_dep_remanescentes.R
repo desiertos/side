@@ -321,3 +321,26 @@ names_saltaXgid <- c("Anta" = 118, "Cachi" = 42, "Cafayate" = 350, "Capital" = 3
                      "Iruya" = 139, "La Caldera" = 116, "La Candelaria" = 345, "La Poma" = 408, "La Viña" = 44, 
                      "Los Andes" = 141, "Metán" = 46, "Molinos" = 47, "Orán" = 142, "Rivadavia" = 399, "Rosario de la Frontera" = 240, 
                      "Rosario de Lerma" = 400, "San Carlos" = 51, "Santa Victoria" = 397)
+
+
+
+# cordoba
+
+cordoba <- prov_sf5 %>% filter(nam == 'Córdoba')
+
+depts_inside_cordoba <- st_intersection(arg_dept, cordoba)
+st_geometry(depts_inside_cordoba) <- NULL
+
+names_cordoba <- mun_sf3 %>% filter(provincia == 'Córdoba') %>% .$nam
+
+names(names_cordoba) <- NULL
+dput(names_cordoba)
+
+ggplot(arg_dept %>% filter(nam == "General San Martín")) + geom_sf() + geom_sf_text(aes(label = gid)) + geom_sf(data = arg_prov %>% filter(nam == "Córdoba"), fill = "transparent", color = "hotpink")
+
+names_cordobaXgid <- c("Calamuchita" = 384, "Capital" = 221, "Colón " = 357, "Cruz del Eje" = 85, "General Roca" = 114, 
+  "General San Martín" = 374, "Ischilín" = 372, "Juárez Celman" = 342, "Marcos Juárez" = 378, 
+  "Minas" = 88, "Pocho" = 529, "Presidente Roque Sáenz Peña" = 112, "Punilla " = 86, 
+  "Río Cuarto" = 95, "Río Primero" = 376, "Río Seco" = 185, "Río Segundo" = 90, "San Alberto" = 89, 
+  "San Javier" = 375, "San Justo" = 91, "Santa María" = 87, "Sobremonte" = 207, "Tercero Arriba" = 93, 
+  "Totoral " = 373, "Tulumba" = 84, "Unión" = 92)
