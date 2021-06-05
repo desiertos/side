@@ -300,3 +300,24 @@ names_tucumanXgid <- c("Capital" = 421, "Chicligasta" = 417, "Cruz Alta" = 422, 
                        "La Cocha" = 412, "Leales" = 419, "Lules" = 423, "Monteros" = 418, "Río Chico" = 415, "Simoca" = 416, 
                        "Tafí del Valle" = 428, "Tafí Viejo" = 425, "Trancas" = 427, "Yerba Buena" = 424, "Burruyacú" = 426, 
                        "Juan Bautista Alberdi" = 414)
+
+
+# salta
+
+salta <- prov_sf5 %>% filter(nam == 'Salta')
+
+depts_inside_salta <- st_intersection(arg_dept, salta)
+st_geometry(depts_inside_salta) <- NULL
+
+names_salta <- mun_sf3 %>% filter(provincia == 'Salta') %>% .$nam
+
+names(names_salta) <- NULL
+dput(names_salta)
+
+#ggplot(arg_dept %>% filter(nam == "General Güemes")) + geom_sf() + geom_sf_text(aes(label = gid)) + geom_sf(data = arg_prov %>% filter(nam == "Salta"), fill = "transparent", color = "hotpink")
+
+names_saltaXgid <- c("Anta" = 118, "Cachi" = 42, "Cafayate" = 350, "Capital" = 343, "Cerrillos" = 94, "Chicoana" = 43, 
+                     "General Güemes" = 50, "General José de San Martín" = 398, "Guachipas" = 347, 
+                     "Iruya" = 139, "La Caldera" = 116, "La Candelaria" = 345, "La Poma" = 408, "La Viña" = 44, 
+                     "Los Andes" = 141, "Metán" = 46, "Molinos" = 47, "Orán" = 142, "Rivadavia" = 399, "Rosario de la Frontera" = 240, 
+                     "Rosario de Lerma" = 400, "San Carlos" = 51, "Santa Victoria" = 397)

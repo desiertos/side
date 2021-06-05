@@ -412,6 +412,36 @@ for (dept in depts_tucuman) {
 #ggplot(mun_sf3 %>% filter(provincia == 'Tucumán')) + geom_sf()
 
 
+# salta
+
+names_saltaXgid <- c("Anta" = 118, "Cachi" = 42, "Cafayate" = 350, "Capital" = 343, "Cerrillos" = 94, "Chicoana" = 43, 
+                     "General Güemes" = 50, "General José de San Martín" = 398, "Guachipas" = 347, 
+                     "Iruya" = 139, "La Caldera" = 116, "La Candelaria" = 345, "La Poma" = 408, "La Viña" = 44, 
+                     "Los Andes" = 141, "Metán" = 46, "Molinos" = 47, "Orán" = 142, "Rivadavia" = 399, "Rosario de la Frontera" = 240, 
+                     "Rosario de Lerma" = 400, "San Carlos" = 51, "Santa Victoria" = 397)
+
+depts_salta <- mun_sf3 %>% filter(provincia == 'Salta') %>% .$nam
+
+for (dept in depts_salta) {
+  
+  linha_mun <- which(
+    mun_sf3$nam == dept & mun_sf3$provincia == 'Salta')
+  
+  gid = names_saltaXgid[dept]
+  
+  linha_dept <- which(arg_dept$gid == gid)
+  
+  print(paste(linha_mun, linha_dept))
+  
+  mun_sf3[linha_mun, 'geometry'] <- arg_dept[linha_dept, 'geometry']
+  
+}
+
+ggplot(mun_sf3 %>% filter(provincia == 'Salta')) + geom_sf()
+
+
+
+
 # CABA
 
 dput(mun_df %>% filter(provincia == "Ciudad Autónoma de Buenos Aires") %>% .$nam)
