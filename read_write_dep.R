@@ -3,6 +3,12 @@ library(sf)
 library(geojsonsf)
 library(jsonlite)
 
+colors <- c(
+  "1" = "#D27B51",
+  "2" = "#DAB28D", 
+  "3" = "#EEC471",
+  "4" = "#99A860")
+
 arg_dept <- read_sf(dsn = "./geo_data/departamento", layer = "departamento")
 arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
 
@@ -88,7 +94,8 @@ mun_sf2 <- mun_sf %>%
   mutate(provincia = provincia_convert[provincia],
          nam = `departamento/municipio/barrio`,
          randId = row_number(),
-         local = paste(nome_local, provincia, sep = '_')) %>%
+         local = paste(nome_local, provincia, sep = '_'),
+         color_real = colors[categoria]) %>%
   left_join(bboxes, by = c('provincia' = 'nam')) %>%
   rename(pob = poblacion_residente,
          cant_medios = cantidad_de_medios,
@@ -394,6 +401,8 @@ mun_sf3[linha_burruyacu, "nome_provincia"] <- 'burruyacu_tucuman'
 mun_sf3[linha_burruyacu, "local"] <- 'burruyacu_Tucumán'
 mun_sf3[linha_burruyacu, "nome_local"] <- 'burruyacu'
 
+
+
 # write files out ---------------------------------------------------------
 
 
@@ -426,7 +435,8 @@ prov_names <- data.frame(
   provincia = prov_sf5$nam,
   name = prov_sf5$nam,
   text = prov_sf5$nam,
-  tipo = 'provincia')
+  tipo = 'provincia') %>%
+  arrange(text)
 
 municipios_transformados <- readxl::read_excel('./data/dados_desertos_municipios_departamentos_lista.xlsx')
 
@@ -442,7 +452,8 @@ lista_mun <- municipios_transformados %>%
 
 #lista_mun %>% filter(is.na(local))
 
-lista_locais <- bind_rows(lista_mun, mun_names, prov_names) 
+lista_locais <- bind_rows(lista_mun, mun_names, prov_names) %>%
+  arrange(name)
 #%>%
 #   mutate(
 #     text = ifelse(text == "Ciudad Autónoma de Buenos Aires", "Ciudad Autónoma de Buenos Aires - CABA", text)
