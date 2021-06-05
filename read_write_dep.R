@@ -11,6 +11,7 @@ colors <- c(
 
 arg_dept <- read_sf(dsn = "./geo_data/departamento", layer = "departamento")
 arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
+caba <- read_sf(dsn ="./geo_data/shp_barrios", layer = "barrios_badata")
 
 the_crs <- sf::st_crs(arg_prov)
 
@@ -24,6 +25,7 @@ prov <- sf::st_set_crs(prov, 5343)
 #mun_sf <- sf::st_transform(mun, the_crs)
 prov_sf <-  sf::st_transform(prov, the_crs)
 arg_dept <- sf::st_transform(arg_dept, the_crs)
+caba_sf <- sf::st_transform(caba, the_crs)
 #arg_dept <- st_simplify(arg_dept, preserveTopology = TRUE, dTolerance = .1)
 
 mun_sf <- readRDS('mun_completo.rds')
@@ -383,6 +385,39 @@ for (dept in depts_catamarca) {
 
 #ggplot(mun_sf3 %>% filter(provincia == 'Catamarca')) + geom_sf()
 
+# CABA
+
+dput(mun_df %>% filter(provincia == "Ciudad Autónoma de Buenos Aires") %>% .$nam)
+
+# aqui fui plotando um por cima do outro e vendo no mapa interativo os nomes dos bairros, e ia acrescentando bairros nesta lista
+caba_to_fix <- c("Barracas", "Belgrano", "Boca", "Caballito", "Colegiales", "Nueva Pompeya", "Nuñez", "Palermo", "Parque Patricios", "Paternal", "Puerto Madero", "Recoleta", "Retiro", "Villa Crespo", "Villa Soldati")
+
+caba_sf_to_fix <- caba_sf %>%
+  filter(str_to_title(BARRIO) %in% caba_to_fix) %>%
+  mutate(BARRIO = str_to_title(BARRIO))
+
+for (barrio in caba_to_fix) {
+  
+  print(barrio)
+  
+  linha_mun <- which(
+    mun_sf3$nam == barrio & mun_sf3$provincia == 'Ciudad Autónoma de Buenos Aires')
+  
+  linha_caba <- which(caba_sf_to_fix$BARRIO == barrio)
+  
+  print(paste(linha_mun, linha_caba))
+  
+  mun_sf3[linha_mun, 'geometry'] <- caba_sf_to_fix[linha_caba, 'geometry']
+  
+}
+
+#comparar
+
+ggplot(mun_sf3 %>% filter(provincia == 'Ciudad Autónoma de Buenos Aires')) +
+  geom_sf(data = caba_sf, fill = 'yellow') +
+  geom_sf(fill = "lightpink")
+
+ggplot() + geom_sf(data = caba_sf, fill = 'yellow')
 
 # San Luis province geometry
 
