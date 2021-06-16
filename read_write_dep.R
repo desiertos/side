@@ -11,6 +11,7 @@ colors <- c(
 
 arg_dept <- read_sf(dsn = "./geo_data/departamento", layer = "departamento")
 arg_prov <- read_sf(dsn = "./geo_data/provincia", layer = "provincia")
+arg <- read_sf(dsn = "./geo_data/pais", layer = "pais")
 caba <- read_sf(dsn ="./geo_data/shp_barrios", layer = "barrios_badata")
 
 the_crs <- sf::st_crs(arg_prov)
@@ -25,6 +26,7 @@ prov <- sf::st_set_crs(prov, 5343)
 #mun_sf <- sf::st_transform(mun, the_crs)
 prov_sf <-  sf::st_transform(prov, the_crs)
 arg_dept <- sf::st_transform(arg_dept, the_crs)
+arg <- sf::st_transform(arg, the_crs)
 caba_sf <- sf::st_transform(caba, the_crs)
 #arg_dept <- st_simplify(arg_dept, preserveTopology = TRUE, dTolerance = .1)
 
@@ -96,15 +98,15 @@ mun_sf2 <- mun_sf %>%
   mutate(provincia = provincia_convert[provincia],
          nam = `departamento/municipio/barrio`,
          randId = row_number(),
-         local = paste(nome_local, provincia, sep = '_'),
-         color_real = colors[categoria]) %>%
+         local = paste(nome_local, provincia, sep = '_')) %>%
   left_join(bboxes, by = c('provincia' = 'nam')) %>%
   rename(pob = poblacion_residente,
          cant_medios = cantidad_de_medios,
          cant_periodistas = cantidad_de_periodistas,
          pobXmedios = `relacion_poblacion_residente/medios`,
          pobXperiodistas = `relacion_poblacion_residente/periodistas`)
-  # fixes
+
+# fixes
 
 mun_sf2[mun_sf2$provincia == 'Formosa' & mun_sf2$nam == 'Patiño', 'categoria'] <- "1"
 mun_sf2[mun_sf2$provincia == 'Santa Fe' & mun_sf2$nam == 'La Capital', 'nam'] <- "Capital"
@@ -209,6 +211,8 @@ prov_sf5 <- prov_sf4 %>%
   )
 
 
+
+
 # fixes to localities
 
 mun_sf3 <- mun_sf2 %>%
@@ -220,6 +224,23 @@ mun_sf3 <- mun_sf2 %>%
 
 # provv <- prov_sf
 # st_geometry(provv) <- NULL
+
+
+# fix Loncopué
+linha_loncopue <- which(mun_sf3$`departamento/municipio/barrio` == "Loconpué")
+mun_sf3[linha_loncopue, "departamento/municipio/barrio"] <- 'Loncopué'
+mun_sf3[linha_loncopue, "nam"] <- 'Loncopué'
+mun_sf3[linha_loncopue, "nome_provincia"] <- 'loncopue_neuquen'
+mun_sf3[linha_loncopue, "local"] <- 'loncopue_Neuquén'
+mun_sf3[linha_loncopue, "nome_local"] <- 'loncopue'
+
+linha_burruyacu <- which(mun_sf3$`departamento/municipio/barrio` == "Burrayacú")
+mun_sf3[linha_burruyacu, "departamento/municipio/barrio"] <- 'Burruyacú'
+mun_sf3[linha_burruyacu, "nam"] <- 'Burruyacú'
+mun_sf3[linha_burruyacu, "nome_provincia"] <- 'burruyacu_tucuman'
+mun_sf3[linha_burruyacu, "local"] <- 'burruyacu_Tucumán'
+mun_sf3[linha_burruyacu, "nome_local"] <- 'burruyacu'
+
 
 
 # geometry fixes ----------------------------------------------------------
@@ -403,7 +424,7 @@ for (dept in depts_tucuman) {
   
   linha_dept <- which(arg_dept$gid == gid)
   
-  print(paste(linha_mun, linha_dept))
+  print(paste(dept, linha_mun, linha_dept))
   
   mun_sf3[linha_mun, 'geometry'] <- arg_dept[linha_dept, 'geometry']
   
@@ -526,22 +547,11 @@ for (dept in names(names_pba_gid)) {
   
 }
 
-# San Luis province geometry
+# cores
 
-# fix Loncopué
-linha_loncopue <- which(mun_sf3$`departamento/municipio/barrio` == "Loconpué")
-mun_sf3[linha_loncopue, "departamento/municipio/barrio"] <- 'Loncopué'
-mun_sf3[linha_loncopue, "nam"] <- 'Loncopué'
-mun_sf3[linha_loncopue, "nome_provincia"] <- 'loncopue_neuquen'
-mun_sf3[linha_loncopue, "local"] <- 'loncopue_Neuquén'
-mun_sf3[linha_loncopue, "nome_local"] <- 'loncopue'
+mun_sf3$color_real <- colors[mun_sf3$categoria]
 
-# linha_burruyacu <- which(mun_sf3$`departamento/municipio/barrio` == "Burrayacú")
-# mun_sf3[linha_burruyacu, "departamento/municipio/barrio"] <- 'Burruyacú'
-# mun_sf3[linha_burruyacu, "nam"] <- 'Burruyacú'
-# mun_sf3[linha_burruyacu, "nome_provincia"] <- 'burruyacu_tucuman'
-# mun_sf3[linha_burruyacu, "local"] <- 'burruyacu_Tucumán'
-# mun_sf3[linha_burruyacu, "nome_local"] <- 'burruyacu'
+
 
 
 
@@ -562,7 +572,19 @@ for (i in 1:nrow(arg_prov)) {
 # mask argentina ----------------------------------------------------------
 
 
-argentina <- prov_sf5 %>% group_by() %>% summarise()
+#argentina <- prov_sf5 %>% group_by() %>% summarise()
+
+bbox_arg_continental <- data.frame(
+  lon = c(-53, -53, -75, -75),
+  lat  = c(-21, -56, -56, -21)
+)
+
+polygon <- bbox_arg_continental %>%
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>%
+  summarise(geometry = st_combine(geometry)) %>%
+  st_cast("POLYGON")
+
+#argentina_cont <- st_intersection(polygon, argentina)
 
 #ggplot(argentina) + geom_sf()
 
@@ -570,28 +592,36 @@ world <- geojson_sf("./geo_data/world.json")
 
 world <- st_transform(world, the_crs)
 
-arg_mask <- sf::st_difference(world, argentina)
+arg_mask <- sf::st_difference(world, argentina_cont)
+
+
+
+# cut provincias ----------------------------------------------------------
+
+prov_sf6 <- st_intersection(polygon, st_make_valid(prov_sf5))
+
 
 
 #ggplot(prov_geometries_from_depts) + geom_sf()
 
 # write files out ---------------------------------------------------------
-
+sf_geojson()
 arg_mask_geo <- geojsonsf::sf_geojson(arg_mask, digits = 6)
-write_file(arg_mask_geo, "../desiertos.github.io/data/maps/arg_mask.geojson")
+write_file(arg_mask_geo, "../desiertos.github.io/data/maps/arg_mask.json")
 
 mun_geo <- geojsonsf::sf_geojson(mun_sf3, digits = 6)
 #prov_geo <- geojsonsf::sf_geojson(prov_sf, digits = 6)
 
-write_file(mun_geo, '../desiertos.github.io/data/maps/dep.json')
+write_file(mun_geo, '../desiertos.github.io/data/maps/dep_raw.json')
 #write_file(prov_geo, "./geo_data/d3/prov_.geojson")
 
-prov_geo <- geojsonsf::sf_geojson(prov_sf5, digits = 6)
+prov_geo <- geojsonsf::sf_geojson(prov_sf6, digits = 6)
 #prov_geo <- geojsonsf::sf_geojson(prov_sf, digits = 6)
 
-write_file(prov_geo, '../desiertos.github.io/data/maps/prov2.json')
+write_file(prov_geo, '../desiertos.github.io/data/maps/prov_raw.json')
 #write_file(prov_geo, "./geo_data/d3/prov_.geojson")
 
+# WILL SIMPLIFY ON MAPSHAPER.
 
 
 # lista

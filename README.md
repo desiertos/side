@@ -615,3 +615,47 @@ locs.filter(d => d.properties.categoria == "4")
 
 alerta de bruxaria!!!!
 string.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+
+
+tippecanoe -zg -o localidad.mbtiles -l localidad --coalesce-densest-as-needed --extend-zooms-if-still-dropping dep.json
+
+tippecanoe -zg -o provincia.mbtiles -l provincia --coalesce-densest-as-needed --extend-zooms-if-still-dropping prov2.json
+
+Mapbox como cancelar um processamento?
+como fazer hover num layer composite?
+
+dash.map_obj.getStyle().layers
+
+
+https://blog.mapbox.com/going-live-with-electoral-maps-a-guide-to-feature-state-b520e91a22d
+
+--generate-ids
+
+tippecanoe -zg -o localidad.mbtiles -l localidad --coalesce-densest-as-needed --extend-zooms-if-still-dropping --generate-ids dep_raw.json
+
+tippecanoe -zg -o provincia.mbtiles -l provincia --coalesce-densest-as-needed --extend-zooms-if-still-dropping --generate-ids prov_raw.json
+
+
+mudando o nome do layer no studio, muda no GL tb.
+
+map.featureSetState o source-layer tem que ser sourceLayer
+
+
+https://developers.facebook.com/tools/debug
+
+
+mapbox://styles/tiagombp/ckpcy0bxc0jru18o6eskk8r8u
+https://api.mapbox.com/styles/v1/tiagombp/ckpcy0bxc0jru18o6eskk8r8u/static/pin-s+555555(-59.6985,-36.7913)/[-63.3927,-41.0454,-56.664,-33.2669]/300x200?access_token=pk.eyJ1IjoidGlhZ29tYnAiLCJhIjoiY2thdjJmajYzMHR1YzJ5b2huM2pscjdreCJ9.oT7nAiasQnIMjhUB-VFvmw
+
+https://api.mapbox.com/styles/v1/tiagombp/ckpcy0bxc0jru18o6eskk8r8u/static/pin-s+555555(-59.6985,-36.7913)/[-63.3927,-41.0454,-56.664,-33.2669]/300x200?access_token=pk.eyJ1IjoidGlhZ29tYnAiLCJhIjoiY2thdjJmajYzMHR1YzJ5b2huM2pscjdreCJ9.oT7nAiasQnIMjhUB-VFvmw
+
+
+https://api.mapbox.com/styles/v1/tiagombp/ckpcy0bxc0jru18o6eskk8r8u/static/pin-l+212121(-59.6985,-36.7913)/[-63.3927,-41.0454,-56.664,-33.2669]/900x600?access_token=pk.eyJ1IjoidGlhZ29tYnAiLCJhIjoiY2thdjJmajYzMHR1YzJ5b2huM2pscjdreCJ9.oT7nAiasQnIMjhUB-VFvmw
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image
+
+
+
+para destacar sem usar borda e aumentar o tamanho: box-shadow: inset 0px 0px 0 2px;
